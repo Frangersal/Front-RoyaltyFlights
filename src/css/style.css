@@ -164,3 +164,15 @@
     justify-content: center;
     align-items: center;
 }
+#myNavbar {
+    background-color: #e3f2fd09;
+    position: relative;
+    z-index: 2; /* Valor alto para asegurarse de que la barra de navegación esté en frente */
+  }
+  
+  main {
+    position: absolute;
+  top: 0px;
+    z-index: 1; /* Valor menor para que el contenido esté detrás de la barra de navegación */
+  }
+  

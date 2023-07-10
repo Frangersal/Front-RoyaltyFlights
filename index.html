@@ -11,7 +11,7 @@
   
 <body> 
     <header>
-        <nav class="navbar navbar-expand-sm navbar-light fixed-top" style="background-color: #e3f2fd09; " >
+        <nav class="navbar navbar-expand-sm navbar-light"   id="myNavbar" style="background-color: #e3f2fd09; " >
             <a class="navbar-brand" href="#">
                 <img src="./src/assets/images/Logo-RoyaltyFlights.png" style="width: 80px;" alt="Logotipo de Royalty Flights"> 
             </a>
@@ -20,10 +20,10 @@
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <ul class="navbar-nav me-auto mt-2 mt-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#" aria-current="page">Inicio<span class="visually-hidden">(current)</span></a>
+                        <a class="nav-link active" href="#inicio" aria-current="page">Inicio<span class="visually-hidden">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Quienes somos</a>
+                        <a class="nav-link" href="#servicios">Quienes somos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Apartar vuelo</a>
@@ -32,7 +32,7 @@
                         <a class="nav-link" href="#">Preguntas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Blog</a>
+                        <a class="nav-link" href="#blog">Blog</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contacto</a>
@@ -46,7 +46,7 @@
     <main class="container-fluid">
         <section class="bg-RoyaltyFlights-index row">
             <div class="col-12 main-RF">
-            <h3 class="titulo-1_h3">
+            <h3 class="titulo-1_h3" id="inicio">
                 Tu vuelo hacia lo extraordinario
             </h3> 
             <h2 class="titulo-1_h2">
@@ -111,7 +111,7 @@
         </section>
         <section class="bg-RoyaltyFlights-service nuestros-servicios row ">
             <div class=" row">
-                <h1 class="titulo-1_h1 pt-2">
+                <h1 class="titulo-1_h1 pt-2" id="servicios">
                     Nuestros servicios
                 </h1>
                 <p class="subtexto-blog">
@@ -240,7 +240,7 @@
 
         <section class="nuestros-servicios bg-blog row ">
             <div class=" row">
-                <h1 class="titulo-1_h1 pt-2">
+                <h1 class="titulo-1_h1 pt-2" id="blog">
                     Nuestro Blog
                 </h1>
                 <p class="subtexto-blog">
@@ -306,7 +306,7 @@
 
         </section> 
         <section class="mapa"> 
-            <div class=" row center">
+            <div class=" row center" id="mapa">
                 <!-- 
                 <h1 class="titulo-1_h1 pt-2">
                    Mapa
