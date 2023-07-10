@@ -1,0 +1,166 @@
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main-RF{
+    padding-top: 5rem;
+}
+.margenes-lados{
+    margin-left: 4rem;
+    margin-right: 4rem;
+}
+.bg-RoyaltyFlights-index{
+    background-image: url('../assets/images/BG-RF.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 700px;
+
+}
+
+.bg-RoyaltyFlights-service{
+    background-image: url('../assets/images/BG-Serv.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 700px;
+
+}
+.bg-blog{
+    background-color: #e2e5e8;
+    
+}
+.nuestros-servicios{
+    height: 700px;
+}
+.mapa{
+    height: 700px;
+}
+.titulo-1_h1{
+    margin-top: 2rem;
+    padding-left: 4.0rem;
+    /*font-family: Arial, Helvetica, sans-serif;*/
+    font-size: 35px;
+    font-weight: bold;
+    height: 40px;
+
+}
+.titulo-1_h3{
+
+    padding-top: 18vh;
+    padding-left: 4.0rem;
+    /*font-family: Arial, Helvetica, sans-serif;*/
+    font-size: 25px;
+    font-weight: bold;
+}
+.titulo-1_h2{
+    /*font-family: Arial, Helvetica, sans-serif;*/
+    font-size: 35px;
+    font-weight: bold;
+
+    padding-left: 4.0rem;
+}
+.subtexto{
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.014); /* Color de fondo transparente */
+    backdrop-filter: blur(10px); /* Valor de desenfoque */
+    padding-left: 4.0rem;
+    color: black;
+    width: 50%;
+}
+.subtexto-blog{
+    padding-left: 4.0rem;
+}
+.btn-RF{
+    margin-bottom: 1rem;
+    background-color: black;
+
+    margin-left: 4.0rem;
+}
+
+.nav-flights-box{
+    background-color: rgba(161, 54, 54, 0);
+    min-height: 150px; 
+    width: 100%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-flights-box-son{
+    background-color: #ffffff;
+    min-height: 150px; 
+    width: 90%;
+    border-radius: 10px;
+}
+.nav-flights-box_select-box{
+    background-color: rgba(255, 0, 221, 0);
+    height: auto;
+    display: flex;
+}
+
+.nav-flights-box_select{
+    background-color: rgba(0, 0, 255, 0);
+    width: 150px;
+    height: 50px;
+    border-radius: 10px;
+    margin: 0 0.5rem 0 0.5rem ;
+}
+
+.bootom-nav-flights-box_search{
+    background-color: rgb(255, 255, 255);
+    height: auto;
+    display: flex;
+    padding-left: 3%;
+    padding-right: 3%;
+
+    justify-content: center;
+    align-items: center;
+
+}
+.bootom-nav-flights-box_search-section{
+    background-color: #d1ecf5;
+    height: 50px;
+    min-width: 150px;
+    border-left: solid #fff 0.5px;
+
+}
+
+.search-section_destino{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search-section_destino_select{
+    width: 200px;
+}
+.form-control{
+    width: 150px;
+}
+.search-section_piramide{
+
+    width: 40%;
+}
+.search-section_fecha{
+
+    width: 40%;
+}
+.search-section_buttom{
+    background-color: black;
+    min-width: 50px!important;
+}
+.icono-search{
+    fill: aqua!important;
+}
+
+.icon-service{
+    padding: 0.5rem;
+    border: solid 2px black;
+    border-radius: 100px;
+    height: 40px;
+    width: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
