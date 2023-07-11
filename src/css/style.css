@@ -14,7 +14,7 @@
     background-image: url('../assets/images/BG-RF.png');
     background-size: cover;
     background-repeat: no-repeat;
-    height: 700px;
+    height: 675px;
 
 }
 
@@ -22,18 +22,18 @@
     background-image: url('../assets/images/BG-Serv.png');
     background-size: cover;
     background-repeat: no-repeat;
-    height: 700px;
+    height: 675px;
 
 }
 .bg-blog{
-    background-color: #e2e5e8;
+    background-color: #cccccc;
     
 }
 .nuestros-servicios{
-    height: 700px;
+    height: 675px;
 }
 .mapa{
-    height: 700px;
+    height: 675px;
 }
 .titulo-1_h1{
     margin-top: 2rem;
@@ -61,8 +61,8 @@
 }
 .subtexto{
     border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.014); /* Color de fondo transparente */
-    backdrop-filter: blur(10px); /* Valor de desenfoque */
+    background-color: rgba(255, 255, 255, 0); /* Color de fondo transparente */
+    backdrop-filter: blur(5px); /* Valor de desenfoque */
     padding-left: 4.0rem;
     color: black;
     width: 50%;
@@ -118,7 +118,7 @@
 
 }
 .bootom-nav-flights-box_search-section{
-    background-color: #d1ecf5;
+    background-color: #99ccff;
     height: 50px;
     min-width: 150px;
     border-left: solid #fff 0.5px;
@@ -175,4 +175,18 @@
   top: 0px;
     z-index: 1; /* Valor menor para que el contenido esté detrás de la barra de navegación */
   }
-  
+
+
+.select-RF{
+    background-color: rgb(255, 255, 255);
+    border: 0px;
+    border-right: solid 1px rgb(212, 211, 211);
+    width: 150px;
+    height: 40px;
+}
+textarea {
+    resize: none;
+}
+.form-control {
+    width: 100%;
+}
