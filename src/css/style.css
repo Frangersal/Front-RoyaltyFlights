@@ -14,7 +14,8 @@
     background-image: url('../assets/images/BG-RF.png');
     background-size: cover;
     background-repeat: no-repeat;
-    height: 675px;
+    min-height: 675px;
+    background-position: center;
 
 }
 
@@ -22,7 +23,7 @@
     background-image: url('../assets/images/BG-Serv.png');
     background-size: cover;
     background-repeat: no-repeat;
-    height: 675px;
+    min-height: 675px;
 
 }
 .bg-blog{
@@ -30,10 +31,10 @@
     
 }
 .nuestros-servicios{
-    height: 675px;
+    min-height: 675px;
 }
 .mapa{
-    height: 675px;
+    min-height: 675px;
 }
 .titulo-1_h1{
     margin-top: 2rem;
@@ -41,23 +42,32 @@
     /*font-family: Arial, Helvetica, sans-serif;*/
     font-size: 35px;
     font-weight: bold;
-    height: 40px;
+    min-height: 40px;
 
 }
 .titulo-1_h3{
 
-    padding-top: 18vh;
+    margin-top: 18vh;
     padding-left: 4.0rem;
     /*font-family: Arial, Helvetica, sans-serif;*/
     font-size: 25px;
     font-weight: bold;
+
+    background-color: rgba(255, 255, 255, 0); /* Color de fondo transparente */
+    backdrop-filter: blur(5px); /* Valor de desenfoque */
+
+    width: 50%;
 }
 .titulo-1_h2{
     /*font-family: Arial, Helvetica, sans-serif;*/
     font-size: 35px;
     font-weight: bold;
 
+    background-color: rgba(255, 255, 255, 0); /* Color de fondo transparente */
+    backdrop-filter: blur(5px); /* Valor de desenfoque */
     padding-left: 4.0rem;
+
+    width: 50%;
 }
 .subtexto{
     border-radius: 10px;
@@ -67,6 +77,18 @@
     color: black;
     width: 50%;
 }
+@media (max-width: 645px) {
+    .titulo-1_h3{
+        width: 100%;
+    }
+    .titulo-1_h2{
+        width: 100%;
+    }
+    .subtexto{ 
+        width: 100%;
+    }    
+    /* Otros estilos... */
+  }
 .subtexto-blog{
     padding-left: 4.0rem;
 }
@@ -75,6 +97,10 @@
     background-color: black;
 
     margin-left: 4.0rem;
+}
+.btn-RF-contacto{
+    margin-bottom: 1rem;
+    background-color: black; 
 }
 
 .nav-flights-box{
@@ -96,12 +122,15 @@
     background-color: rgba(255, 0, 221, 0);
     height: auto;
     display: flex;
+    flex-wrap: wrap;
 }
+
+
 
 .nav-flights-box_select{
     background-color: rgba(0, 0, 255, 0);
     width: 150px;
-    height: 50px;
+    min-height: 50px;
     border-radius: 10px;
     margin: 0 0.5rem 0 0.5rem ;
 }
@@ -115,6 +144,7 @@
 
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 
 }
 .bootom-nav-flights-box_search-section{
@@ -126,29 +156,60 @@
 }
 
 .search-section_destino{
-    width: 20%;
+    width: 30%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .search-section_destino_select{
-    width: 200px;
+    width: 30%;
 }
-.form-control{
-    width: 150px;
-}
+
 .search-section_piramide{
 
-    width: 40%;
+    width: 30%;
 }
 .search-section_fecha{
 
-    width: 40%;
+    width: 30%;
 }
+
 .search-section_buttom{
     background-color: black;
-    min-width: 50px!important;
+    width: 10%!important;
+    min-width: 50px;
+
 }
+@media (max-width: 620px) {
+    
+    
+    .search-section_destino{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .search-section_destino_select{
+        width: 100%;
+    }
+
+    .search-section_piramide{
+
+        width: 100%;
+    }
+    .search-section_fecha{
+
+        width: 100%;
+    }
+
+    .search-section_buttom{
+        background-color: black;
+        width: 100%!important; 
+
+    }
+    
+}
+  
 .icono-search{
     fill: aqua!important;
 }
