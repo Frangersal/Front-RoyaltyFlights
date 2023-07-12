@@ -5,16 +5,16 @@ parangon
 */
 @font-face {
     font-family: neometric;
-    src: url(../src/assets/fonts/Fontspring-DEMO-neometricalt-extrabold.otf);
+    src: url(/src/assets/fonts/Fontspring-DEMO-neometricalt-extrabold.otf);
 }
 @font-face {
     font-family: neometric-md;
-    src: url(../src/assets/fonts/Fontspring-DEMO-neometric-medium.otf);
+    src: url(/src/assets/fonts/Fontspring-DEMO-neometric-medium.otf);
 }
 
 @font-face {
     font-family: neometric-sm;
-    src: url(../src/assets/fonts/Fontspring-DEMO-neometric-regular.otf);
+    src: url(/src/assets/fonts/Fontspring-DEMO-neometric-regular.otf);
 }
 
 h1{
