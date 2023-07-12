@@ -8,12 +8,15 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="./src/css/style.css">
     <script src="https://kit.fontawesome.com/f8522fdeef.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="Logo-RoyaltyFlights.ico">
+
     <title>Royalty Flights</title>
 </head>
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-light" id="myNavbar" style="background-color: #e3f2fd09; ">
+        <nav class="navbar navbar-expand-sm navbar-light" id="myNavbar"
+            style="background-color: #e3f2fd09; margin-left: 4rem;">
             <a class="navbar-brand" href="#">
                 <img src="./src/assets/images/Logo-RoyaltyFlights.png" style="width: 80px;"
                     alt="Logotipo de Royalty Flights">
@@ -22,25 +25,25 @@
                 data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
                 aria-label="Toggle navigation"><i class="fa-solid fa-bars" style="color: #000000;"></i></button>
             <div class="collapse navbar-collapse" id="collapsibleNavId">
-                <ul class="navbar-nav me-auto mt-2 mt-lg-0">
-                    <li class="nav-item">
+                <ul class="navbar-nav me-auto mt-2 mt-lg-0 neo-sm">
+                    <li class="nav-item" style="margin-left: 2rem;">
                         <a class="nav-link active" href="#inicio" aria-current="page">Inicio<span
                                 class="visually-hidden">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#servicios">Quienes somos</a>
+                        <a class="nav-link active" href="#servicios">Quienes somos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Apartar vuelo</a>
+                        <a class="nav-link active" href="#">Apartar vuelo</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Preguntas</a>
+                        <a class="nav-link active" href="#">Preguntas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#blog">Blog</a>
+                        <a class="nav-link active" href="#blog">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contacto">Contacto</a>
+                        <a class="nav-link active" href="#contacto">Contacto</a>
                     </li>
                 </ul>
             </div>
@@ -57,16 +60,18 @@
                     desde nuestras avionetas
                 </h2>
                 <p class="subtexto">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, id quaerat? Natus maiores
-                    fugiat voluptas distinctio necessitatibus ut laborum?
+                    Una mirada exclusiva a la magia de Guatemala: Vuela en avioneta y déjate maravillar por nuestros
+                    destinos.
                 </p>
-                <button type="button" class="btn btn-dark btn-RF">Aparta vuelo</button>
+                <button type="button" class="btn btn-dark btn-RF">Nuestros Paquetes</button>
                 <div class="nav-flights-box">
                     <div class="nav-flights-box-son">
                         <div class="nav-flights-box_select-box">
                             <div class="nav-flights-box_select center">
-                                <div class="form-group">
+                                <div class="form-group select-box">
+                                    <i class="fa-solid fa-plane" style="color: #000000;"></i>
                                     <select class="select-RF" id="opciones">
+                                        <option value="opcion1" hidden>Tipo de viaje </option>
                                         <option value="opcion1">Opción 1 </option>
                                         <option value="opcion2">Opción 2</option>
                                     </select>
@@ -74,16 +79,22 @@
                             </div>
                             <div class="nav-flights-box_select center">
                                 <div class="form-group">
+                                    <i class="fa-solid fa-user" style="color: #000000;"></i>
+
                                     <select class="select-RF" id="opciones">
-                                        <option value="opcion1">Opción 1</option>
+                                        <option value="opcion1" hidden>Personas</option>
+                                        <option value="opcion1">Opción 1 </option>
                                         <option value="opcion2">Opción 2</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="nav-flights-box_select center">
                                 <div class="form-group">
+
+                                    <i class="fa-solid fa-tag" style="color: #000000;"></i>
                                     <select class="select-RF" id="opciones">
-                                        <option value="opcion1">Opción 1</option>
+                                        <option value="opcion1" hidden>Paquetes </option>
+                                        <option value="opcion1">Opción 1 </option>
                                         <option value="opcion2">Opción 2</option>
                                     </select>
                                 </div>
@@ -94,17 +105,20 @@
                                 <div class="form-group">
 
                                     <select class="select-RF" id="opciones">
+                                        <option value="opcion1" hidden>Destino </option>
                                         <option value="opcion1">Opción 1</option>
                                         <option value="opcion2">Opción 2</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="bootom-nav-flights-box_search-section search-section_piramide">
+                            <div class="bootom-nav-flights-box_search-section search-section_piramide center parrafo">
+                                <span>Piramide maya de antigua ciudad de guatemala</span>
                             </div>
-                            <div class="bootom-nav-flights-box_search-section search-section_fecha">
+                            <div class="bootom-nav-flights-box_search-section search-section_fecha center parrafo">
+                                <span>Sab, Julio 10</span>
                             </div>
                             <div class="bootom-nav-flights-box_search-section search-section_buttom center">
-                                <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+                                <i class="fa-solid fa-magnifying-glass" style="color: #ffffff; font-size: 2rem;"></i>
                             </div>
                         </div>
                     </div>
@@ -160,7 +174,7 @@
                         <div class="row">
                             <div class="col-3 ">
                                 <div class="icon-service">
-                                    <i class=" fa-solid fa-plane-circle-check" style="color: #000000;"></i>
+                                    <i class="fa-solid fa-helicopter" style="color: #000000;"></i>
                                 </div>
                             </div>
                             <div class="col-9 ">
@@ -217,7 +231,7 @@
                         <div class="row">
                             <div class="col-3 ">
                                 <div class="icon-service">
-                                    <i class="fa-solid fa-bullhorn" style="color: #000000;"></i>
+                                    <i class="fa-solid fa-venus-mars" style="color: #000000;"></i>
                                 </div>
                             </div>
                             <div class=" col-9 ">
@@ -313,13 +327,14 @@
                 </h1>
                 -->
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3932928.6105925115!2d-92.47918129560324!3d15.711383019377756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8588135036e7506b%3A0x35982b375b84d5bb!2sGuatemala!5e0!3m2!1ses-419!2smx!4v1688841577634!5m2!1ses-419!2smx"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.2836303143536!2d-90.53422709999998!3d14.582907449999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8589a15c550c9ee7%3A0xa24d18ef07612754!2sCol%20Reyna%20Barrios%2C%20Cdad.%20de%20Guatemala%2C%20Guatemala!5e0!3m2!1ses-419!2smx!4v1689139269903!5m2!1ses-419!2smx"
                     width="600" height="450" style="border:0; margin-top: 9rem;" allowfullscreen="" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"></iframe>
+                 
             </div>
         </section>
         <footer class="container-fluid  ">
-            <div class="row center" >
+            <div class="row center">
                 <div class=" col-sm-12 col-md-6">
                     <h1 id="contacto">Contactate con nosotros</h1>
                     <p>
@@ -332,7 +347,7 @@
                     <i class="fa-brands fa-facebook " style="color: #000000; font-size: 30px; margin-right: 20px;"></i>
                     <i class="fa-brands fa-instagram " style="color: #000000; font-size: 30px;"></i>
                 </div>
-                <div class=" col-sm-12 col-md-6 " >
+                <div class=" col-sm-12 col-md-6 ">
                     <form>
                         <div class="row">
                             <div class="col-md-6">
@@ -375,11 +390,11 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12 center"  >
+                <div class="col-md-12 center">
                     <span>Royalty FLights © 2023</span>
                 </div>
             </div>
-        </footer> 
+        </footer>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

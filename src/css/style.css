@@ -1,3 +1,41 @@
+/*
+arial
+neometric
+parangon
+*/
+@font-face {
+    font-family: neometric;
+    src: url(/src/assets/fonts/Fontspring-DEMO-neometricalt-extrabold.otf);
+}
+@font-face {
+    font-family: neometric-md;
+    src: url(/src/assets/fonts/Fontspring-DEMO-neometric-medium.otf);
+}
+
+@font-face {
+    font-family: neometric-sm;
+    src: url(/src/assets/fonts/Fontspring-DEMO-neometric-regular.otf);
+}
+
+h1{
+    color: #000;
+}
+h2{
+    color: #000;
+    font-family: neometric-md;
+    font-size: 20px;
+
+}
+h5{
+    color: #000;
+}
+p{
+    color: #000;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.neo-sm{
+    font-family: neometric-sm;
+}
 .center{
     display: flex;
     justify-content: center;
@@ -27,7 +65,7 @@
 
 }
 .bg-blog{
-    background-color: #cccccc;
+    background-color: #e2e6e9;
     
 }
 .nuestros-servicios{
@@ -43,6 +81,7 @@
     font-size: 35px;
     font-weight: bold;
     min-height: 40px;
+    font-family: neometric-md;
 
 }
 .titulo-1_h3{
@@ -54,31 +93,37 @@
     font-weight: bold;
 
     background-color: rgba(255, 255, 255, 0); /* Color de fondo transparente */
-    backdrop-filter: blur(5px); /* Valor de desenfoque */
+    backdrop-filter: blur(2px); /* Valor de desenfoque */
 
     width: 50%;
+    font-family: neometric-md;
+    color: #000;
+    
 }
 .titulo-1_h2{
     /*font-family: Arial, Helvetica, sans-serif;*/
     font-size: 35px;
     font-weight: bold;
-
+ 
     background-color: rgba(255, 255, 255, 0); /* Color de fondo transparente */
-    backdrop-filter: blur(5px); /* Valor de desenfoque */
+    backdrop-filter: blur(2px); /* Valor de desenfoque */
     padding-left: 4.0rem;
-
-    width: 50%;
+    color: #000;
+    width: 60%;
+    font-family: neometric-md;
 }
 .subtexto{
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0); /* Color de fondo transparente */
     backdrop-filter: blur(5px); /* Valor de desenfoque */
     padding-left: 4.0rem;
-    color: black;
+    color: #d2ecf5;
     width: 50%;
+    font-family: arial;
 }
 @media (max-width: 645px) {
     .titulo-1_h3{
+        margin-top: 1vh;
         width: 100%;
     }
     .titulo-1_h2{
@@ -92,10 +137,16 @@
 .subtexto-blog{
     padding-left: 4.0rem;
 }
+
 .btn-RF{
+    font-family: neometric-md;
+    height: 55px;
+    width: 180px;
+    font-size: 16px;
+    border-radius: 15px!important;
     margin-bottom: 1rem;
     background-color: black;
-
+padding: 0%;
     margin-left: 4.0rem;
 }
 .btn-RF-contacto{
@@ -110,13 +161,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    
 }
 
 .nav-flights-box-son{
     background-color: #ffffff;
     min-height: 150px; 
     width: 90%;
-    border-radius: 10px;
+    border-radius: 23px;
 }
 .nav-flights-box_select-box{
     background-color: rgba(255, 0, 221, 0);
@@ -139,8 +192,8 @@
     background-color: rgb(255, 255, 255);
     height: auto;
     display: flex;
-    padding-left: 3%;
-    padding-right: 3%;
+    padding-left: 0%;
+    padding-right: 0%;
 
     justify-content: center;
     align-items: center;
@@ -148,7 +201,7 @@
 
 }
 .bootom-nav-flights-box_search-section{
-    background-color: #99ccff;
+    background-color: #d2ecf5;
     height: 50px;
     min-width: 150px;
     border-left: solid #fff 0.5px;
@@ -156,7 +209,7 @@
 }
 
 .search-section_destino{
-    width: 30%;
+    width: 16%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -167,16 +220,16 @@
 
 .search-section_piramide{
 
-    width: 30%;
+    width: 40%;
 }
 .search-section_fecha{
 
-    width: 30%;
+    width: 35%;
 }
 
 .search-section_buttom{
     background-color: black;
-    width: 10%!important;
+    width: 4%!important;
     min-width: 50px;
 
 }
@@ -241,13 +294,24 @@
 .select-RF{
     background-color: rgb(255, 255, 255);
     border: 0px;
-    border-right: solid 1px rgb(212, 211, 211);
-    width: 150px;
-    height: 40px;
+    /*border-right: solid 1px rgb(212, 211, 211);*/
+    width: 110px;
+    height: 25px;
+    font-family: neometric-sm;
+    font-size: 12px;
 }
 textarea {
     resize: none;
 }
 .form-control {
     width: 100%;
+}
+.form-group{ 
+    display: inline;
+}
+
+.form-group_icon{
+}
+.parrafo{
+    margin-top: none !important;
 }
