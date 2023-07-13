@@ -2,7 +2,17 @@
 arial
 neometric
 parangon
+
+colores
+celeste 3f93e8
+marino 092054
 */ 
+:root {
+    /*
+    --a-celeste: #3f93e8;  */
+    --a-celeste: #46a1f0;
+    --a-marino: #092054;
+  }
 @import url('https://fonts.cdnfonts.com/css/neometric-2'); 
 
    /*                         
@@ -20,6 +30,13 @@ parangon
     src: url(/src/assets/fonts/Fontspring-DEMO-neometric-regular.otf);
 }
 */
+html{
+
+    background-color: var(--a-marino);
+}
+footer{
+    background-color: #fff;
+}
 h1{
     color: #000;
     font-weight: bold;
@@ -48,18 +65,19 @@ p{
     align-items: center;
 }
 .main-RF{
-    padding-top: 5rem;
+    padding-top: 25rem;
 }
 .margenes-lados{
     margin-left: 4rem;
     margin-right: 4rem;
 }
 .bg-RoyaltyFlights-index{
-    background-image: url('../assets/images/BG-RF.png');
-    background-size: cover;
+    /*background-image: url('../assets/images/BG-RF.png');*/
+    background-image: url('../assets/images/BG-VPG.png');
+    background-size: contain    ;
     background-repeat: no-repeat;
-    min-height: 675px;
-    background-position: center;
+    min-height: 675px; 
+  background-position: top center;
 
 }
 
@@ -79,6 +97,7 @@ p{
 }
 .mapa{
     min-height: 675px;
+    background-color: #fff;
 }
 .titulo-1_h1{
     margin-top: 2rem;
@@ -123,7 +142,7 @@ p{
     background-color: rgba(255, 255, 255, 0); /* Color de fondo transparente */
     backdrop-filter: blur(5px); /* Valor de desenfoque */
     padding-left: 4.0rem;
-    color: #d2ecf5;
+    color: #cccc;
     width: 50%;
     font-family: arial;
 }
@@ -207,7 +226,7 @@ padding: 0%;
 
 }
 .bootom-nav-flights-box_search-section{
-    background-color: #d2ecf5;
+    background-color: var(--a-celeste);
     height: 50px;
     min-width: 150px;
     border-left: solid #fff 0.5px;
