@@ -13,9 +13,14 @@ marino 092054
     --a-celeste: #46a1f0;
     --a-marino: #092054;
   }
-@import url('https://fonts.cdnfonts.com/css/neometric-2');  
-  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500&display=swap'); 
-   /*                         
+@import url('https://fonts.cdnfonts.com/css/neometric-2'); 
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500&display=swap'); 
+
+@font-face {
+    font-family: neometric-600;
+    src: url(https://fonts.cdnfonts.com/css/neometric-2?styles=26743); 
+}
+   /*                      
 @font-face {
     font-family: neometric;
     src: url(/src/assets/fonts/Fontspring-DEMO-neometricalt-extrabold.otf);
@@ -28,7 +33,7 @@ marino 092054
 @font-face {
     font-family: neometric-sm;
     src: url(/src/assets/fonts/Fontspring-DEMO-neometric-regular.otf);
-}
+}   
 */
 html{
 
@@ -38,17 +43,28 @@ footer{
     background-color: #fff;
 }
 h1{
+    font-family: 'Neometric Alt', sans-serif;
     color: #000;
     font-weight: bold;
 }
+label{
+    font-family: 'Neometric Alt', sans-serif;
+    color: #000;
+}
+input{
+    font-family: 'Neometric Alt', sans-serif;
+    color: #000;
+}
 h2{
     color: #000;
-    font-family: 'Neometric Alt', sans-serif;
-    font-size: 20px;
+    font-size: 16px;
+    font-weight: bold;
     
 
 }
 h5{
+    font-family: 'Neometric Alt', sans-serif;
+
     color: #000;
 }
 p{
@@ -64,8 +80,24 @@ p{
     justify-content: center;
     align-items: center;
 }
+.center-top{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
 .main-RF{
     padding-top: 7rem;
+}
+.img-logo-grande{
+    position: absolute;
+    top: 8rem;
+    left: 4rem;
+    height: 250px;
+}
+@media (max-width: 1010px) {
+    .img-logo-grande{
+        height: 0px;
+    }
 }
 .h1-sobrevuela{
     width:  100%;
@@ -216,7 +248,7 @@ p{
 }
 
 .btn-RF{
-    font-family: 'Neometric Alt', sans-serif;
+    font-family: 'Neometric Alt', sans-serif, neometric-md;
     height: 55px;
     width: 180px;
     font-size: 16px;
@@ -376,6 +408,10 @@ padding: 0%;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    position: relative;
+    top: -0.8rem;
+    left: 0rem;
 }
 #myNavbar {
     background-color: #e3f2fd09;
@@ -398,7 +434,11 @@ padding: 0%;
     height: 25px;
         /*font-family: neometric-sm;*/
     font-family: 'Neometric Alt', sans-serif;
-    font-size: 12px;
+    font-size: 14px;
+}
+span{
+    font-family: 'Neometric Alt', sans-serif;
+    font-size: 14px;
 }
 textarea {
     resize: none;
