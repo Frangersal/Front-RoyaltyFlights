@@ -37,7 +37,7 @@ marino 092054
 */
 html{
 
-    background-color: var(--a-marino);
+    background-color: #0d1f44;
 }
 footer{
     background-color: #fff;
@@ -158,10 +158,18 @@ p{
     background-image: url('../assets/images/BG-VPG.png');*/
     background-image: url('../assets/images/BG-ROYALTYFLIGHTS.png');
     background-size:auto    ;
-    /*background-repeat: no-repeat;*/
-    min-height: 675px; 
-    /*background-position: top center;*/
+    background-repeat: no-repeat;
+    /* min-height: 675px; */
+   /* background-position: top center; */
+   background-position: right;
+    /*width: 100%;*/
 
+}
+@media (max-width: 1000px) {
+    .bg-RoyaltyFlights-index{ 
+       background-position: left; 
+    
+    }
 }
 
 .bg-RoyaltyFlights-service{
@@ -257,6 +265,7 @@ p{
     background-color: black;
 padding: 0%;
     margin-left: 4.0rem;
+    border: black 1px solid;
 }
 .btn-RF-contacto{
     margin-bottom: 1rem;
@@ -275,14 +284,29 @@ padding: 0%;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #091f54cb;
-    backdrop-filter: blur(10px);
+    background-color: #091f5400; 
     z-index: -1; /* Colocamos el pseudo-elemento detrás del contenido */
   }
+@media (max-width: 620px) {
+    .nav-item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(9, 31, 84, 0.747);
+        backdrop-filter: blur(10px);
+        z-index: -1; /* Colocamos el pseudo-elemento detrás del contenido */
+      }
+}
   
   .nav-link {
     position: relative; /* Aseguramos que el texto se muestre encima del pseudo-elemento */
     color: white; /* Ajusta el color del texto según tus preferencias */
+    text-shadow:  2px 2px 5px #092054, -2px -2px 5px #092054, -2px 2px 5px #092054, 2px -2px 5px #092054;
+    /*font-weight: bold;
+    padding-right: 0!important;*/
   }
    
 .nav-flights-box{
@@ -301,6 +325,7 @@ padding: 0%;
     min-height: 150px; 
     width: 90%;
     border-radius: 23px;
+    margin-bottom: 6rem;
 }
 .nav-flights-box_select-box{
     background-color: rgba(255, 0, 221, 0);
