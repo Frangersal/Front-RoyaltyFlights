@@ -3,50 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
     <title>Document</title>
 </head>
 <style>
-body { margin: 0; }
-.parallax-container {
-  position: relative;
-  height: 100vh; /* Ajusta la altura según tus necesidades */
-  overflow: hidden;
-}
-.parallax-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.parallax-background-front {
-  background-image: url('./src/assets/images/BG-GUJERO.png');
-  transform: translateZ(0);
-}
-.parallax-background-back {
-  background-image: url('./src/assets/images/BG-PIRAMIDE.png');
-  transform: translate3d(0, 0, 0);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
+.navbar {
+  background-color: green;
+  transition: background-color 0.5s ease;
 }
 
+.navbar.scrolled {
+  background-color: blue;
+}
+
+.yellow-section {
+  min-height: 1400px;
+  background-color: yellow;
+}
+
+.red-section {
+  min-height: 700px;
+  background-color: red;
+}
+
+
 </style>
+
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+  <a class="navbar-brand" href="#">Logo</a>
+  <!-- Agrega aquí los elementos del menú -->
+</nav>
+
+<div class="yellow-section">
+  <h1>Sección Amarilla</h1>
+</div>
+
+<div class="red-section">
+  <h1>Sección Roja</h1>
+</div>
+<div class="red-section">
+  <h1>Sección Roja</h1>
+</div>
 <body>
-    <div class="parallax-container">
-        <div class="parallax-background parallax-background-front"> hola</div>
-        <div class="parallax-background parallax-background-back"></div>
-    </div>
-      
-      
-      
-      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+ 
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+crossorigin="anonymous"></script>
+<script>
+window.addEventListener('scroll', function() {
+  var navbar = document.querySelector('.navbar');
+  var yellowSection = document.querySelector('.yellow-section');
+  var windowHeight = window.innerHeight;
+  var scrollHeight = window.scrollY;
+
+  var yellowSectionTop = yellowSection.offsetTop;
+  var yellowSectionBottom = yellowSectionTop + yellowSection.offsetHeight;
+
+  // Agrega o remueve la clase "scrolled" al navbar cuando se cruza la primera sección
+  if (scrollHeight > yellowSectionBottom || scrollHeight < yellowSectionTop) {
+    navbar.classList.remove('scrolled');
+  } else {
+    navbar.classList.add('scrolled');
+  }
+});
+ 
+
+</script>
 </html>
   

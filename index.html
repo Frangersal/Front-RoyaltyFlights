@@ -15,22 +15,26 @@
     <link href="https://fonts.cdnfonts.com/css/neometric-2" rel="stylesheet">
     <title>Royalty Flights</title>
 </head>
+<style>
 
+</style>
 <body>
-    <header  class="container-fluid" style="background-color: #0d1f44;">
-        <nav class="navbar navbar-expand-sm navbar-dark " id="myNavbar"
-            style="background-color: #091f5400; margin-left: 4rem;margin-right: 4rem;">
-            <a class="navbar-brand" href="#">
+    <header  class="container-fluid"  >
+        <nav class="navbar navbar-expand-sm navbar-dark fixed-top" id="myNavbar" >
+            
+            <a class="navbar-brand logo-container"  style="width: 80px; margin-left: 4rem; "href="#">
                 <!-- 
                 <img src="./src/assets/images/Logo-RoyaltyFlights.png" style="width: 80px;"
                     alt="Logotipo de Royalty Flights">                    
                 -->
-                <img src="./src/assets/images/Logo-RoyaltyFlights-Blanco.png" style="width: 80px;"
+                
+                
+                <img src="./src/assets/images/Logo-RoyaltyFlights-Blanco.png" class="img-nav" 
                     alt="Logotipo de Royalty Flights">   
             </a>
-            <button class="navbar-toggler d-lg-none d-xl-none d-xxl-none" type="button" data-bs-toggle="collapse"
+            <button class="navbar-toggler d-lg-none d-xl-none d-xxl-none" style="margin-right: 4rem;" type="button" data-bs-toggle="collapse"
                 data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
-                aria-label="Toggle navigation"><i class="fa-solid fa-bars" style="color: #ffffff;"></i></button>
+                aria-label="Toggle navigation"><i class="fa-solid fa-bars" style="color: #ffffff; "></i></button>
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <ul class="navbar-nav me-auto mt-2 mt-lg-0 neo-sm">
                     <li class="nav-item center">
@@ -56,7 +60,7 @@
         </nav>
     </header>
     <main class="container-fluid">
-        <section class="bg-RoyaltyFlights-index row">
+        <section class="bg-RoyaltyFlights-index  yellow-section row">
             <div class="col-12 main-RF">
                 <!-- 
                 <h3 class="titulo-1_h3" id="inicio">
@@ -158,7 +162,7 @@
                 </div>
             </div>
         </section>
-        <section class="bg-RoyaltyFlights-service nuestros-servicios row ">
+        <section class="bg-RoyaltyFlights-service red-section nuestros-servicios row ">
             <div class=" row">
                 <h1 class="titulo-1_h1 pt-2" id="servicios">
                     Nuestros servicios
@@ -423,6 +427,30 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+    <script>
+    window.addEventListener('scroll', function() {
+    var navbar = document.querySelector('.navbar');
+    var img = document.querySelector('.img-nav');
+    var yellowSection = document.querySelector('.yellow-section');
+    var windowHeight = window.innerHeight;
+    var scrollHeight = window.scrollY;
+
+    var yellowSectionTop = yellowSection.offsetTop -150;
+    var yellowSectionBottom = yellowSectionTop + yellowSection.offsetHeight;
+
+    // Agrega o remueve la clase "scrolled" al navbar cuando se cruza la primera sección
+    if (scrollHeight > yellowSectionBottom || scrollHeight < yellowSectionTop) {
+        navbar.classList.remove('scrolled');
+        img.classList.remove('img-nav-lg');  
+    } else {
+        navbar.classList.add('scrolled');
+        img.classList.add('img-nav-lg'); 
+    }
+ 
+    });
+ 
+
+    </script>
 </body>
 
 </html>

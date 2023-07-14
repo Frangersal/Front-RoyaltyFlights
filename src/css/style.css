@@ -192,7 +192,7 @@ p{
     background-color: #fff;
 }
 .titulo-1_h1{
-    margin-top: 2rem;
+    margin-top: 5.9rem;
     padding-left: 4.0rem;
     /*font-family: Arial, Helvetica, sans-serif;*/
     font-size: 35px;
@@ -439,8 +439,8 @@ padding: 0%;
     left: 0rem;
 }
 #myNavbar {
-    background-color: #e3f2fd09;
-    position: relative;
+    /*background-color: #e3f2fd09;
+    position: relative;*/
     z-index: 2; /* Valor alto para asegurarse de que la barra de navegación esté en frente */
   }
   
@@ -479,4 +479,33 @@ textarea {
 }
 .parrafo{
     margin-top: none !important;
+}
+.fixed-top{
+    /*
+    background: rgb(13,31,68);
+    background: linear-gradient(180deg, rgba(13,31,68,1) 0%, rgba(0,212,255,0) 88%); */
+}
+
+
+.navbar {
+    background-color: #0d1f44;
+    transition: background-color 0.5s ease; 
+    border-bottom: none; /* Removemos el borde inferior predeterminado */
+}
+.navbar.white-border {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  }
+.navbar.scrolled {
+    background-color: rgba(0, 128, 0, 0);
+}
+
+.yellow-section { /*
+    background-color: rgba(255, 255, 0, 0.507);
+    margin-bottom: 1rem;*/
+}
+.img-nav{
+    width: 40px;
+} 
+.img-nav-lg{
+    width: 80px;
 }
