@@ -1,0 +1,186 @@
+
+:root { 
+  --a-celeste: #46a1f0;
+  --a-marino: #092054;
+}
+@import url('https://fonts.cdnfonts.com/css/neometric-2'); 
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500&display=swap'); 
+
+*{
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  font-family: 'Neometric Alt', sans-serif;
+
+}
+.row {
+  --bs-gutter-x: 0rem!important; 
+}
+
+.bg-marino{
+background-color: var(--a-marino);
+}
+.bg-celeste{
+background-color: var(--a-celeste);
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+/**/
+.box-form-p1{
+padding: 2rem;
+color: #fff; 
+min-height: 23rem;
+}
+/**/
+/* INICIO MENU*/
+
+.nav-item {
+  position: relative;
+  padding: 0.3rem;
+  overflow: hidden;
+}
+
+.nav-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #091f5400; 
+  z-index: -1; /* Colocamos el pseudo-elemento detrás del contenido */
+}
+@media (max-width: 620px) {
+  .nav-item::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(9, 31, 84, 0.747);
+      backdrop-filter: blur(10px);
+      z-index: -1; /* Colocamos el pseudo-elemento detrás del contenido */
+    }
+}
+
+.nav-link {
+  position: relative; /* Aseguramos que el texto se muestre encima del pseudo-elemento */
+  color: white; /* Ajusta el color del texto según tus preferencias */
+  /*text-shadow:  2px 2px 5px #092054, -2px -2px 5px #092054, -2px 2px 5px #092054, 2px -2px 5px #092054;
+  /*font-weight: bold;
+  padding-right: 0!important;*/
+}
+ 
+.nav-flights-box{
+  background-color: rgba(161, 54, 54, 0);
+  min-height: 150px; 
+  width: 100%; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  
+}
+
+.nav-flights-box-son{
+  background-color: #ffffff;
+  min-height: 150px; 
+  width: 90%;
+  border-radius: 23px;
+  margin-bottom: 6rem;
+}
+.nav-flights-box_select-box{
+  background-color: rgba(255, 0, 221, 0);
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+
+.nav-flights-box_select{
+  background-color: rgba(0, 0, 255, 0);
+  width: 150px;
+  min-height: 50px;
+  border-radius: 10px;
+  margin: 0 0.5rem 0 0.5rem ;
+}
+
+.bootom-nav-flights-box_search{
+  background-color: rgb(255, 255, 255);
+  height: auto;
+  display: flex;
+  padding-left: 0%;
+  padding-right: 0%;
+
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+}
+.bootom-nav-flights-box_search-section{
+  background-color: var(--a-celeste);
+  height: 50px;
+  min-width: 150px;
+  border-left: solid #fff 0.5px;
+
+}
+
+#myNavbar {
+  /*background-color: #e3f2fd09;
+  position: relative;*/
+  z-index: 2; /* Valor alto para asegurarse de que la barra de navegación esté en frente */
+}
+
+main {
+  position: absolute;
+top: 0px;
+  z-index: 1; /* Valor menor para que el contenido esté detrás de la barra de navegación */
+}
+
+.navbar {
+  background-color: #0d1f44;
+  transition: background-color 0.5s ease; 
+  border-bottom: none; /* Removemos el borde inferior predeterminado */
+}
+.navbar.white-border {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+.navbar.scrolled {
+  background-color: rgba(0, 128, 0, 0);
+}
+
+.yellow-section { /*
+  background-color: rgba(255, 255, 0, 0.507);
+  margin-bottom: 1rem;*/
+}
+.img-nav{
+  width: 40px;
+} 
+.img-nav-lg{
+  width: 80px;
+}
+
+/* FIN MENU */
+.box-fecha-hora{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.option-hora{
+  background-color: #cccccc;
+  height: 2rem;
+  margin: 0.5rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+.select-hora{
+  height: 100%;
+  width: 360px;
+}
