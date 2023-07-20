@@ -16,7 +16,14 @@
 .row {
   --bs-gutter-x: 0rem!important; 
 }
+.form-group {
+  padding-bottom: 1rem;
+  /* Ajusta el valor de padding según tus preferencias */
+}
 
+.row {
+  min-height: 20px;
+}
 .bg-marino{
 background-color: var(--a-marino);
 }
@@ -34,6 +41,77 @@ background-color: var(--a-celeste);
 padding: 2rem;
 color: #fff; 
 min-height: 23rem;
+}
+
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+}
+
+.calendar {
+  width: 360px;
+  background-color: #D9D9D9;
+  padding: 10px;
+  border-radius: 5px;
+  color: black;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+#calendar-body {
+  width: 100%;
+}
+
+th,
+td {
+  text-align: center;
+  padding: 5px;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  color: #092054;
+}
+
+.date-picker {
+  display: inline-block;
+  position: relative;
+}
+
+.date-picker input[type="date"] {
+  width: 100%;
+  padding: 5px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  appearance: none;
+}
+
+.date-picker input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+td {
+  cursor: pointer;
+}
+
+td.selected {
+  background-color: #092054;
+  color: #fff;
 }
 /**/
 /* INICIO MENU*/
@@ -183,4 +261,10 @@ top: 0px;
 .select-hora{
   height: 100%;
   width: 360px;
+}
+.btn-cita{
+  margin-top: 1rem;
+  width: 96%;
+  background-color: black;
+  border: black 1px solid;
 }
