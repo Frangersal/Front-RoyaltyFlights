@@ -113,15 +113,18 @@ document.querySelector(".btn-cita").addEventListener("click", async function () 
     let selectedHours = Array.from(document.querySelectorAll(".option-hora:checked")).map(option => option.value);
 
     let pasajeros = [];
-    let idviaje = Date.now().toString(); // Asignar un ID de viaje
+    let idviaje = parseInt(Date.now().toString()); // Asignar un ID de viaje
     let horaViaje = selectedHours[0]; // Asignar la misma hora para todos los pasajeros
+    let precioPaquete = await APIpaquetePrecio(id_paquete);
 
     for (let i = 1; i <= cantidad; i++) {
         let nombres = document.getElementById("nombre" + i).value;
         let apellidos = document.getElementById("apellido" + i).value;
         let correo = document.getElementById("correo" + i).value;
         let dpi = document.getElementById("dpi" + i).value;
-        let peso = parseInt(document.getElementById("peso" + i).value) ;
+        let peso = parseInt(document.getElementById("peso" + i).value);
+        let idpaquete = await APItipoViaje(id_paquete);
+        let precioPorUsuario = precioPaquete / cantidad;
         //console.log(peso);
         //console.log(typeof peso); 
 
@@ -177,46 +180,48 @@ document.querySelector(".btn-cita").addEventListener("click", async function () 
             return; // Detener el proceso si el peso es inválido
         }
 
-        let idpaquete= await APItipoViaje(id_paquete);
-/*
-"paqueteId": {
-            "id_paquete": 1,
-            "nombre_paquete": "Paquete Royalty",
-            "tipo_vuelo": "Vuelo redondo",
-            "descripcion": "Un viaje de lujo a cualquier destino que elijas",
-            "numero_max_personas": 2,
-            "precio": 10000.0,
-            "estatus": true
-        },
-        "id_viaje": 1,
-        "nombres": "Juan Angel",
-        "apellidos": "Ordonez Guzman",
-        "correo": "juan.angel.guzman@gmail.com",
-        "hora": "11:30:00",
-        "dpi": "1234567890123",
-        "peso": 92.0,
-        "fecha": "2023-07-20",
-        "total": 500.0
 
-*/
+
+        /*
+        "paqueteId": {
+                    "id_paquete": 1,
+                    "nombre_paquete": "Paquete Royalty",
+                    "tipo_vuelo": "Vuelo redondo",
+                    "descripcion": "Un viaje de lujo a cualquier destino que elijas",
+                    "numero_max_personas": 2,
+                    "precio": 10000.0,
+                    "estatus": true
+                },
+                "id_viaje": 1,
+                "nombres": "Juan Angel",
+                "apellidos": "Ordonez Guzman",
+                "correo": "juan.angel.guzman@gmail.com",
+                "hora": "11:30:00",
+                "dpi": "1234567890123",
+                "peso": 92.0,
+                "fecha": "2023-07-20",
+                "total": 500.0
+        
+        */
         let pasajero = {
             paqueteId: idpaquete,
             id_viaje: idviaje,
             nombres: nombres,
-            //id_pasajero: idPasajero,
             apellidos: apellidos,
             correo: correo,
             hora: horaViaje,
-            //pagado: false,
             dpi: dpi,
-            peso: peso,
-            fecha: selectedDate
+            peso: peso+0.1,
+            fecha: selectedDate,
+            total: precioPorUsuario+0.1
         };
 
         pasajeros.push(pasajero);
     }
 
-    console.log(pasajeros); // Aquí puedes hacer lo que desees con el arreglo de JSONs
+    //console.log(pasajeros); // Aquí puedes hacer lo que desees con el arreglo de JSONs
+
+    console.log(JSON.stringify(pasajeros, null, 2)); // Aquí se muestra el JSON en crudo
 
     // Realizar la llamada fetch dinámica según el tipo de viaje seleccionado
     async function APItipoViaje(tipoViaje) {
@@ -229,7 +234,7 @@ document.querySelector(".btn-cita").addEventListener("click", async function () 
         });
 
         const fetchPromise = fetch(`https://www.royaltyflightsgt.com/api/paquetes/${tipoViaje}`, {
-            method: "GET" 
+            method: "GET"
         });
 
         try {
@@ -246,7 +251,83 @@ document.querySelector(".btn-cita").addEventListener("click", async function () 
             throw error;
         }
     }
+
+    async function APIpaquetePrecio(tipoViaje) {
+        const TIMEOUT_DELAY = 5000; // Tiempo de espera en milisegundos (en este caso, 5 segundos)
+
+        const timeoutPromise = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                reject(new Error("Tiempo de espera excedido. Por favor, inténtalo nuevamente."));
+            }, TIMEOUT_DELAY);
+        });
+
+        const fetchPromise = fetch(`https://www.royaltyflightsgt.com/api/paquetes/${tipoViaje}`, {
+            method: "GET"
+        });
+
+        try {
+            const response = await Promise.race([timeoutPromise, fetchPromise]);
+            if (response.ok) {
+                const data = await response.json();
+                if (data.hasOwnProperty('precio')) {
+                    const precio = data.precio;
+                    return precio; // Retornar solo el valor del campo 'precio'
+                } else {
+                    throw new Error("El JSON obtenido no contiene el campo 'precio'.");
+                }
+            } else {
+                throw new Error("Error al obtener los datos del paquete. Por favor, inténtalo nuevamente.");
+            }
+        } catch (error) {
+            console.error(error);
+            // Lógica adicional para manejar el error de tiempo de espera u otros errores
+            throw error;
+        }
+    }
+
+    //Llamada a la función para enviar los datos de los pasajeros
+    try {
+        await enviarDatosPasajeros(pasajeros);
+        showToast("Datos enviados exitosamente.");
+    } catch (error) {
+        showToast("Error al enviar los datos. Por favor, inténtalo nuevamente.");
+        console.error(error);
+    } 
+
 });
+
+async function enviarDatosPasajeros(pasajeros) {
+    const TIMEOUT_DELAY = 5000; // Tiempo de espera en milisegundos (en este caso, 5 segundos)
+
+    const timeoutPromise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            reject(new Error("Tiempo de espera excedido. Por favor, inténtalo nuevamente."));
+        }, TIMEOUT_DELAY);
+    });
+
+    const fetchPromise = fetch("https://www.royaltyflightsgt.com/api/creacion-cita/sesion-pago", {
+        method: "POST",
+        mode: "no-cors", // Agregar el modo "no-cors" a la solicitud
+        headers: {
+            "Content-Type": "application/json", // Asegurarse de que el tipo de contenido sea JSON
+        },
+        body: JSON.stringify(pasajeros),
+    });
+
+    try {
+        const response = await Promise.race([timeoutPromise, fetchPromise]);
+        if (response.ok) {
+            const data = await response.json();
+            return data; // Puedes procesar la respuesta del servidor si es necesario
+        } else {
+            throw new Error("Error al enviar los datos de los pasajeros. Por favor, inténtalo nuevamente.");
+        }
+    } catch (error) {
+        console.error(error);
+        // Lógica adicional para manejar el error de tiempo de espera u otros errores
+        throw error;
+    }
+}
 
 function showToast(message) {
     // Implementa aquí la lógica para mostrar un mensaje de error o notificación al usuario
