@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-
+/* 
 function mostrarInputs() {
     let cantidad = document.getElementById("cantidad").value;
     let inputsContainer = document.getElementById("inputs-container");
@@ -103,7 +103,72 @@ function mostrarInputs() {
         inputsContainer.innerHTML += html;
     }
 }
+------- */
+let pasajerosData = {}; // Objeto para almacenar los datos ingresados en los campos de cada pasajero
 
+function mostrarInputs() {
+    let cantidad = document.getElementById("cantidad").value;
+    let inputsContainer = document.getElementById("inputs-container");
+
+    // Guardar los datos de los campos de entrada del pasajero actual antes de actualizar los inputs
+    if (cantidad > 0) {
+        for (let i = 1; i <= cantidad; i++) {
+            pasajerosData[i] = {
+                nombre: document.getElementById("nombre" + i)?.value || '',
+                apellido: document.getElementById("apellido" + i)?.value || '',
+                correo: document.getElementById("correo" + i)?.value || '',
+                dpi: document.getElementById("dpi" + i)?.value || '',
+                peso: document.getElementById("peso" + i)?.value || '',
+            };
+        }
+    }
+
+    // Limpiar el contenedor antes de agregar los nuevos campos de entrada
+    inputsContainer.innerHTML = '';
+
+    // Agregar los campos de entrada para cada pasajero
+    for (let i = 1; i <= cantidad; i++) {
+        let html = `
+            <div class="row">
+                <hr>
+                <h1>Pasajero ${i}</h1>
+                <div class="form-group col-md-5">
+                    <label for="nombre${i}">Nombre:</label>
+                    <input type="text" class="form-control" id="nombre${i}" placeholder="Ingresa tu nombre" required value="${pasajerosData[i]?.nombre || ''}">
+                </div>
+                <div class="col-md-2"></div>
+                <div class="form-group col-md-5">
+                    <label for="apellido${i}">Apellido:</label>
+                    <input type="text" class="form-control" id="apellido${i}" placeholder="Ingresa tu apellido" required value="${pasajerosData[i]?.apellido || ''}">
+                </div>
+                <div class="form-group col-md-5">
+                    <label for="correo${i}">Correo:</label>
+                    <input type="email" class="form-control" id="correo${i}" placeholder="Ingresa tu correo electrónico" required value="${pasajerosData[i]?.correo || ''}">
+                </div>
+                <div class="col-md-2"></div>
+                <div class="form-group col-md-5">
+                    <label for="dpi${i}">DPI:</label>
+                    <input type="text" class="form-control" id="dpi${i}" placeholder="Ingresa tu DPI" required value="${pasajerosData[i]?.dpi || ''}">
+                </div>
+                <div class="form-group col-md-5">
+                    <label for="peso${i}">Peso:</label>
+                    <input type="text" class="form-control" id="peso${i}" placeholder="Ingresa tu peso en kilos" required value="${pasajerosData[i]?.peso || ''}">
+                </div>
+            </div>
+        `;
+        inputsContainer.innerHTML += html;
+    }
+}
+
+function agregarPasajero() {
+    let cantidad = document.getElementById("cantidad").value;
+    cantidad++;
+    document.getElementById("cantidad").value = cantidad;
+    mostrarInputs();
+}
+
+// Llamar a la función mostrarInputs() inicialmente para mostrar los campos de entrada para 1 pasajero
+mostrarInputs();
 
 /*** */
 document.querySelector(".btn-cita").addEventListener("click", async function () {
@@ -211,9 +276,9 @@ document.querySelector(".btn-cita").addEventListener("click", async function () 
             correo: correo,
             hora: horaViaje,
             dpi: dpi,
-            peso: peso+0.1,
+            peso: peso + 0.1,
             fecha: selectedDate,
-            total: precioPorUsuario+0.1
+            total: precioPorUsuario + 0.1
         };
 
         pasajeros.push(pasajero);
@@ -222,7 +287,18 @@ document.querySelector(".btn-cita").addEventListener("click", async function () 
     //console.log(pasajeros); // Aquí puedes hacer lo que desees con el arreglo de JSONs
 
     console.log(JSON.stringify(pasajeros, null, 2)); // Aquí se muestra el JSON en crudo
+    let jsonPasajeros = JSON.stringify(pasajeros);
 
+    function isJSON(str) {
+        try {
+          JSON.parse(str);
+          return true;
+        } catch (error) {
+          return false;
+        }
+      }
+
+      console.log(isJSON(jsonPasajeros));  
     // Realizar la llamada fetch dinámica según el tipo de viaje seleccionado
     async function APItipoViaje(tipoViaje) {
         const TIMEOUT_DELAY = 5000; // Tiempo de espera en milisegundos (en este caso, 5 segundos)
@@ -284,50 +360,51 @@ document.querySelector(".btn-cita").addEventListener("click", async function () 
             throw error;
         }
     }
-
+ 
     //Llamada a la función para enviar los datos de los pasajeros
     try {
-        await enviarDatosPasajeros(pasajeros);
+        await enviarDatosPasajeros(jsonPasajeros);
         showToast("Datos enviados exitosamente.");
     } catch (error) {
         showToast("Error al enviar los datos. Por favor, inténtalo nuevamente.");
         console.error(error);
-    } 
+    }
 
 });
 
-async function enviarDatosPasajeros(pasajeros) {
-    const TIMEOUT_DELAY = 5000; // Tiempo de espera en milisegundos (en este caso, 5 segundos)
+    async function enviarDatosPasajeros(pasajeros) {
+        const TIMEOUT_DELAY = 5000; // Tiempo de espera en milisegundos (en este caso, 5 segundos)
 
-    const timeoutPromise = new Promise((resolve, reject) => {
-        setTimeout(() => {
-            reject(new Error("Tiempo de espera excedido. Por favor, inténtalo nuevamente."));
-        }, TIMEOUT_DELAY);
-    });
+        const timeoutPromise = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                reject(new Error("Tiempo de espera excedido. Por favor, inténtalo nuevamente."));
+            }, TIMEOUT_DELAY);
+        });
 
-    const fetchPromise = fetch("https://www.royaltyflightsgt.com/api/creacion-cita/sesion-pago", {
-        method: "POST",
-        mode: "no-cors", // Agregar el modo "no-cors" a la solicitud
-        headers: {
-            "Content-Type": "application/json", // Asegurarse de que el tipo de contenido sea JSON
-        },
-        body: JSON.stringify(pasajeros),
-    });
+        const fetchPromise = fetch("https://www.royaltyflightsgt.com/api/creacion-cita/sesion-pago", {
+            method: "POST",
+            mode: "no-cors", // Agregar el modo "no-cors" a la solicitud
+            headers: {
+                "Content-Type": "application/json", // Asegurarse de que el tipo de contenido sea JSON
+            },
+            body: JSON.stringify(pasajeros),
+        });
 
-    try {
-        const response = await Promise.race([timeoutPromise, fetchPromise]);
-        if (response.ok) {
-            const data = await response.json();
-            return data; // Puedes procesar la respuesta del servidor si es necesario
-        } else {
-            throw new Error("Error al enviar los datos de los pasajeros. Por favor, inténtalo nuevamente.");
+        try {
+            const response = await Promise.race([timeoutPromise, fetchPromise]);
+            if (response.ok) {
+                const data = await response.json();
+                return data; // Puedes procesar la respuesta del servidor si es necesario
+            } else {
+                throw new Error("Error al enviar los datos de los pasajeros. Por favor, inténtalo nuevamente.");
+            }
+        } catch (error) {
+            console.error(error);
+            // Lógica adicional para manejar el error de tiempo de espera u otros errores
+            throw error;
         }
-    } catch (error) {
-        console.error(error);
-        // Lógica adicional para manejar el error de tiempo de espera u otros errores
-        throw error;
     }
-}
+ 
 
 function showToast(message) {
     // Implementa aquí la lógica para mostrar un mensaje de error o notificación al usuario
