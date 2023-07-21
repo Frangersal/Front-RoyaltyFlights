@@ -1,46 +1,51 @@
-
-:root { 
+:root {
   --a-celeste: #46a1f0;
   --a-marino: #092054;
 }
-@import url('https://fonts.cdnfonts.com/css/neometric-2'); 
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500&display=swap'); 
 
-*{
+@import url('https://fonts.cdnfonts.com/css/neometric-2');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500&display=swap');
+
+* {
   font-size: 16px;
   margin: 0;
   padding: 0;
   font-family: 'Neometric Alt', sans-serif;
 
 }
+
 .row {
-  --bs-gutter-x: 0rem!important; 
+  --bs-gutter-x: 0.9rem !important;
 }
+
 .form-group {
-  padding-bottom: 1rem;
-  /* Ajusta el valor de padding según tus preferencias */
+  padding-bottom: 0.9rem;
+ /*  Ajusta el valor de padding según tus preferencias */
 }
 
 .row {
   min-height: 20px;
 }
-.bg-marino{
-background-color: var(--a-marino);
+
+.bg-marino {
+  background-color: var(--a-marino);
 }
-.bg-celeste{
-background-color: var(--a-celeste);
+
+.bg-celeste {
+  background-color: var(--a-celeste);
 }
 
 .center {
   display: flex;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
 }
+
 /**/
-.box-form-p1{
-padding: 2rem;
-color: #fff; 
-min-height: 23rem;
+.box-form-p1 {
+  padding: 2rem;
+  color: #fff;
+  min-height: 23rem;
 }
 
 
@@ -113,6 +118,7 @@ td.selected {
   background-color: #092054;
   color: #fff;
 }
+
 /**/
 /* INICIO MENU*/
 
@@ -120,6 +126,7 @@ td.selected {
   position: relative;
   padding: 0.3rem;
   overflow: hidden;
+  background-color: #0d1f44!important;
 }
 
 .nav-item::before {
@@ -129,67 +136,80 @@ td.selected {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #091f5400; 
-  z-index: -1; /* Colocamos el pseudo-elemento detrás del contenido */
+  background-color: #091f5400;
+  z-index: -1;
+  /* Colocamos el pseudo-elemento detrás del contenido */
 }
+
 @media (max-width: 620px) {
   .nav-item::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(9, 31, 84, 0.747);
-      backdrop-filter: blur(10px);
-      z-index: -1; /* Colocamos el pseudo-elemento detrás del contenido */
-    }
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(9, 31, 84, 0.747);
+    backdrop-filter: blur(10px);
+    z-index: -1;
+    /* Colocamos el pseudo-elemento detrás del contenido */
+  }
 }
 
 .nav-link {
-  position: relative; /* Aseguramos que el texto se muestre encima del pseudo-elemento */
-  color: white; /* Ajusta el color del texto según tus preferencias */
+  position: relative;
+  /* Aseguramos que el texto se muestre encima del pseudo-elemento */
+  color: #0d1f44!important;
+  /* Ajusta el color del texto según tus preferencias */
   /*text-shadow:  2px 2px 5px #092054, -2px -2px 5px #092054, -2px 2px 5px #092054, 2px -2px 5px #092054;
   /*font-weight: bold;
   padding-right: 0!important;*/
+  background-color: #cecece!important;
+  border-bottom: 1px solid #00df1a00!important;
+} 
+.nav-tab.nav.nav-tabs{
+
 }
- 
-.nav-flights-box{
+
+.nav-flights-box {
   background-color: rgba(161, 54, 54, 0);
-  min-height: 150px; 
-  width: 100%; 
+  min-height: 150px;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  
+
 }
 
-.nav-flights-box-son{
+.nav-flights-box-son {
   background-color: #ffffff;
-  min-height: 150px; 
+  min-height: 150px;
   width: 90%;
   border-radius: 23px;
   margin-bottom: 6rem;
 }
-.nav-flights-box_select-box{
+
+.nav-flights-box_select-box {
   background-color: rgba(255, 0, 221, 0);
   height: auto;
   display: flex;
   flex-wrap: wrap;
 }
 
+.tab-content{
+  border-radius: 10px;
+}
 
-
-.nav-flights-box_select{
+.nav-flights-box_select {
   background-color: rgba(0, 0, 255, 0);
   width: 150px;
   min-height: 50px;
   border-radius: 10px;
-  margin: 0 0.5rem 0 0.5rem ;
+  margin: 0 0.5rem 0 0.5rem;
 }
 
-.bootom-nav-flights-box_search{
+.bootom-nav-flights-box_search {
   background-color: rgb(255, 255, 255);
   height: auto;
   display: flex;
@@ -201,7 +221,8 @@ td.selected {
   flex-wrap: wrap;
 
 }
-.bootom-nav-flights-box_search-section{
+
+.bootom-nav-flights-box_search-section {
   background-color: var(--a-celeste);
   height: 50px;
   min-width: 150px;
@@ -212,59 +233,80 @@ td.selected {
 #myNavbar {
   /*background-color: #e3f2fd09;
   position: relative;*/
-  z-index: 2; /* Valor alto para asegurarse de que la barra de navegación esté en frente */
+  z-index: 2;
+  /* Valor alto para asegurarse de que la barra de navegación esté en frente */
 }
 
 main {
   position: absolute;
-top: 0px;
-  z-index: 1; /* Valor menor para que el contenido esté detrás de la barra de navegación */
+  top: 0px;
+  z-index: 1;
+  /* Valor menor para que el contenido esté detrás de la barra de navegación */
 }
 
 .navbar {
   background-color: #0d1f44;
-  transition: background-color 0.5s ease; 
-  border-bottom: none; /* Removemos el borde inferior predeterminado */
+  transition: background-color 0.5s ease;
+  border-bottom: none;
+  /* Removemos el borde inferior predeterminado */
 }
+
 .navbar.white-border {
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 }
+
 .navbar.scrolled {
   background-color: rgba(0, 128, 0, 0);
 }
 
-.yellow-section { /*
+.yellow-section {
+  /*
   background-color: rgba(255, 255, 0, 0.507);
   margin-bottom: 1rem;*/
 }
-.img-nav{
+
+.img-nav {
   width: 40px;
-} 
-.img-nav-lg{
+}
+
+.img-nav-lg {
   width: 80px;
 }
 
 /* FIN MENU */
-.box-fecha-hora{
+.box-fecha-hora {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
-.option-hora{
+
+.option-hora {
   background-color: #cccccc;
   height: 2rem;
   margin: 0.5rem;
 
   display: flex;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
 }
-.select-hora{
+.optionInvalido{
+  color: #949494;
+}
+.select-hora {
   height: 100%;
   width: 360px;
 }
-.btn-cita{
+
+.btn-cita {
   margin-top: 1rem;
   width: 96%;
   background-color: black;
   border: black 1px solid;
+}
+.active{
+  background-color: #092054!important;
+  color: #fff!important;
+}
+.resumen-box{
+  background-color: #CECECE;
+  height: 10rem!important;
 }

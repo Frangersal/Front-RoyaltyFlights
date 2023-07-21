@@ -63,56 +63,16 @@ document.addEventListener('DOMContentLoaded', function () {
         generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
     });
 });
-
-/* 
-function mostrarInputs() {
-    let cantidad = document.getElementById("cantidad").value;
-    let inputsContainer = document.getElementById("inputs-container");
-    inputsContainer.innerHTML = "";
-
-    for (let i = 1; i <= cantidad; i++) {
-        let html = `
-        <div class="row">
-  <hr>
-  <h1>Pasajero ${i}</h1>
-  <div class="form-group col-md-5">
-    <label for="nombre${i}">Nombre:</label>
-    <input type="text" class="form-control" id="nombre${i}" placeholder="Ingresa tu nombre" required>
-  </div>
-  <div class="col-md-2"></div>
-  <div class="form-group col-md-5">
-    <label for="apellido${i}">Apellido:</label>
-    <input type="text" class="form-control" id="apellido${i}" placeholder="Ingresa tu apellido" required>
-  </div>
-  <div class="form-group col-md-5">
-    <label for="correo${i}">Correo:</label>
-    <input type="email" class="form-control" id="correo${i}" placeholder="Ingresa tu correo electrónico" required>
-  </div>
-  <div class="col-md-2"></div>
-  <div class="form-group col-md-5">
-    <label for="dpi${i}">DPI:</label>
-    <input type="text" class="form-control" id="dpi${i}" placeholder="Ingresa tu DPI" required>
-  </div>
-
-  <div class="form-group col-md-5">
-    <label for="peso${i}">peso:</label>
-    <input type="text" class="form-control" id="peso${i}" placeholder="Ingresa tu peso en kilos" required>
-  </div>
-  </div>
-`;
-        inputsContainer.innerHTML += html;
-    }
-}
-------- */
+  
+let cantidadPasajeros = 1; // Variable para almacenar la cantidad de pasajeros actual
 let pasajerosData = {}; // Objeto para almacenar los datos ingresados en los campos de cada pasajero
 
 function mostrarInputs() {
-    let cantidad = document.getElementById("cantidad").value;
     let inputsContainer = document.getElementById("inputs-container");
 
     // Guardar los datos de los campos de entrada del pasajero actual antes de actualizar los inputs
-    if (cantidad > 0) {
-        for (let i = 1; i <= cantidad; i++) {
+    if (cantidadPasajeros > 0) {
+        for (let i = 1; i <= cantidadPasajeros; i++) {
             pasajerosData[i] = {
                 nombre: document.getElementById("nombre" + i)?.value || '',
                 apellido: document.getElementById("apellido" + i)?.value || '',
@@ -127,32 +87,32 @@ function mostrarInputs() {
     inputsContainer.innerHTML = '';
 
     // Agregar los campos de entrada para cada pasajero
-    for (let i = 1; i <= cantidad; i++) {
+    for (let i = 1; i <= cantidadPasajeros; i++) {
         let html = `
             <div class="row">
-                <hr>
-                <h1>Pasajero ${i}</h1>
-                <div class="form-group col-md-5">
-                    <label for="nombre${i}">Nombre:</label>
-                    <input type="text" class="form-control" id="nombre${i}" placeholder="Ingresa tu nombre" required value="${pasajerosData[i]?.nombre || ''}">
+                <div class="form-group col-md-12">
+                    <span>Pasajero ${i}</span>
                 </div>
-                <div class="col-md-2"></div>
-                <div class="form-group col-md-5">
-                    <label for="apellido${i}">Apellido:</label>
-                    <input type="text" class="form-control" id="apellido${i}" placeholder="Ingresa tu apellido" required value="${pasajerosData[i]?.apellido || ''}">
+                <div class="form-group col-md-6">
+                    <!--<label for="nombre${i}">Nombre:</label>-->
+                    <input type="text" class="form-control" id="nombre${i}" placeholder="Ingresa nombre" required value="${pasajerosData[i]?.nombre || ''}">
+                </div> 
+                <div class="form-group col-md-6">
+                    <!-- 
+                    <label for="apellido${i}">Apellido:</label>-->
+                    <input type="text" class="form-control" id="apellido${i}" placeholder="Ingresa apellido" required value="${pasajerosData[i]?.apellido || ''}">
                 </div>
-                <div class="form-group col-md-5">
-                    <label for="correo${i}">Correo:</label>
-                    <input type="email" class="form-control" id="correo${i}" placeholder="Ingresa tu correo electrónico" required value="${pasajerosData[i]?.correo || ''}">
+                <div class="form-group col-md-4">
+                    <!--<label for="correo${i}">Correo:</label>-->
+                    <input type="email" class="form-control" id="correo${i}" placeholder="Ingresa Email" required value="${pasajerosData[i]?.correo || ''}">
+                </div> 
+                <div class="form-group col-md-4">
+                    <!--<label for="dpi${i}">DPI:</label>-->
+                    <input type="text" class="form-control" id="dpi${i}" placeholder="Ingresa DPI" required value="${pasajerosData[i]?.dpi || ''}">
                 </div>
-                <div class="col-md-2"></div>
-                <div class="form-group col-md-5">
-                    <label for="dpi${i}">DPI:</label>
-                    <input type="text" class="form-control" id="dpi${i}" placeholder="Ingresa tu DPI" required value="${pasajerosData[i]?.dpi || ''}">
-                </div>
-                <div class="form-group col-md-5">
-                    <label for="peso${i}">Peso:</label>
-                    <input type="text" class="form-control" id="peso${i}" placeholder="Ingresa tu peso en kilos" required value="${pasajerosData[i]?.peso || ''}">
+                <div class="form-group col-md-4">
+                    <!--<label for="peso${i}">Peso:</label>-->
+                    <input type="text" class="form-control" id="peso${i}" placeholder="Ingresa peso en kilos" required value="${pasajerosData[i]?.peso || ''}">
                 </div>
             </div>
         `;
@@ -160,11 +120,89 @@ function mostrarInputs() {
     }
 }
 
+let limitePasajeros = 1;
+let pasajerosMostrados = 1;
+
+async function APImxPersonas(tipoViaje) {
+    const TIMEOUT_DELAY = 1000; // Tiempo de espera en milisegundos (en este caso, 5 segundos)
+
+    const timeoutPromise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            reject(new Error("Tiempo de espera excedido. Por favor, inténtalo nuevamente."));
+        }, TIMEOUT_DELAY);
+    });
+
+    const fetchPromise = fetch(`https://www.royaltyflightsgt.com/api/paquetes/${tipoViaje}`, {
+        method: "GET"
+    });
+
+    try {
+        const response = await Promise.race([timeoutPromise, fetchPromise]);
+        if (response.ok) {
+            const data = await response.json();
+            if (data.hasOwnProperty('numero_max_personas')) {
+                const numero_max_personas = data.numero_max_personas;
+                return numero_max_personas; // Retornar solo el valor del campo 'numero_max_personas'
+            } else {
+                throw new Error("El JSON obtenido no contiene el campo 'numero_max_personas'.");
+            }
+        } else {
+            throw new Error("Error al obtener los datos del paquete. Por favor, inténtalo nuevamente.");
+        }
+    } catch (error) {
+        console.error(error);
+        // Lógica adicional para manejar el error de tiempo de espera u otros errores
+        throw error;
+    }
+}
+document.getElementById("tipoViaje").addEventListener("change", async function () {
+    const tipoViajeValue = this.value;
+    try {
+        limitePasajeros = await APImxPersonas(tipoViajeValue);
+        //console.log("Limite de pasajeros obtenido:", limitePasajeros);
+    } catch (error) {
+        console.error(error);
+    }
+});
+ 
+// Bloquear o desbloquear el botón "Quitar pasajero" según la cantidad de pasajeros mostrados
+const btnQuitarPasajero = document.querySelector(".btn-quitarPasajero");
+if (pasajerosMostrados === 1) {
+    btnQuitarPasajero.disabled = true;
+} else {
+    btnQuitarPasajero.disabled = false;
+}
+
+
 function agregarPasajero() {
-    let cantidad = document.getElementById("cantidad").value;
-    cantidad++;
-    document.getElementById("cantidad").value = cantidad;
-    mostrarInputs();
+    if (cantidadPasajeros < limitePasajeros) {
+        cantidadPasajeros++;
+        mostrarInputs();
+        pasajerosMostrados++;
+        console.log(pasajerosMostrados);
+
+        // Actualizar estado del botón "Quitar pasajero"
+        const btnQuitarPasajero = document.querySelector(".btn-quitarPasajero");
+        btnQuitarPasajero.disabled = pasajerosMostrados === 1;
+    }
+}
+
+function quitarPasajero() {
+    if (cantidadPasajeros > 1) {
+        cantidadPasajeros--;
+        mostrarInputs();
+        pasajerosMostrados--;
+        console.log(pasajerosMostrados);
+
+        // Actualizar estado del botón "Quitar pasajero"
+        const btnQuitarPasajero = document.querySelector(".btn-quitarPasajero");
+        btnQuitarPasajero.disabled = pasajerosMostrados === 1;
+    }
+}
+
+
+function cantidadPasajerosInputs() {
+    return pasajerosMostrados;
 }
 
 // Llamar a la función mostrarInputs() inicialmente para mostrar los campos de entrada para 1 pasajero
@@ -172,7 +210,7 @@ mostrarInputs();
 
 /*** */
 document.querySelector(".btn-cita").addEventListener("click", async function () {
-    let cantidad = document.getElementById("cantidad").value;
+    let cantidad = cantidadPasajerosInputs();
     let id_paquete = parseInt(document.getElementById("tipoViaje").value);
     let selectedDate = document.getElementById("selected-date").value;
     let selectedHours = Array.from(document.querySelectorAll(".option-hora:checked")).map(option => option.value);
@@ -189,12 +227,7 @@ document.querySelector(".btn-cita").addEventListener("click", async function () 
         let dpi = document.getElementById("dpi" + i).value;
         let peso = parseInt(document.getElementById("peso" + i).value);
         let idpaquete = await APItipoViaje(id_paquete);
-        let precioPorUsuario = precioPaquete / cantidad;
-        //console.log(peso);
-        //console.log(typeof peso); 
-
-        //let miID = Date.now().toString() + i + peso + dpi;
-        //let idPasajero = miID;
+        let precioPorUsuario = precioPaquete / cantidad; 
 
         // Validar apellidos
         let regexApellidos = /^[A-Za-z\s]+$/;
@@ -243,31 +276,8 @@ document.querySelector(".btn-cita").addEventListener("click", async function () 
         if (!regexPeso.test(peso)) {
             showToast("Peso inválido. Ingresa un peso válido entre 20 y 150.");
             return; // Detener el proceso si el peso es inválido
-        }
+        } 
 
-
-
-        /*
-        "paqueteId": {
-                    "id_paquete": 1,
-                    "nombre_paquete": "Paquete Royalty",
-                    "tipo_vuelo": "Vuelo redondo",
-                    "descripcion": "Un viaje de lujo a cualquier destino que elijas",
-                    "numero_max_personas": 2,
-                    "precio": 10000.0,
-                    "estatus": true
-                },
-                "id_viaje": 1,
-                "nombres": "Juan Angel",
-                "apellidos": "Ordonez Guzman",
-                "correo": "juan.angel.guzman@gmail.com",
-                "hora": "11:30:00",
-                "dpi": "1234567890123",
-                "peso": 92.0,
-                "fecha": "2023-07-20",
-                "total": 500.0
-        
-        */
         let pasajero = {
             paqueteId: idpaquete,
             id_viaje: idviaje,
@@ -291,14 +301,14 @@ document.querySelector(".btn-cita").addEventListener("click", async function () 
 
     function isJSON(str) {
         try {
-          JSON.parse(str);
-          return true;
+            JSON.parse(str);
+            return true;
         } catch (error) {
-          return false;
+            return false;
         }
-      }
+    }
 
-      console.log(isJSON(jsonPasajeros));  
+    console.log(isJSON(jsonPasajeros));
     // Realizar la llamada fetch dinámica según el tipo de viaje seleccionado
     async function APItipoViaje(tipoViaje) {
         const TIMEOUT_DELAY = 5000; // Tiempo de espera en milisegundos (en este caso, 5 segundos)
@@ -360,7 +370,7 @@ document.querySelector(".btn-cita").addEventListener("click", async function () 
             throw error;
         }
     }
- 
+
     //Llamada a la función para enviar los datos de los pasajeros
     try {
         await enviarDatosPasajeros(jsonPasajeros);
@@ -372,39 +382,39 @@ document.querySelector(".btn-cita").addEventListener("click", async function () 
 
 });
 
-    async function enviarDatosPasajeros(pasajeros) {
-        const TIMEOUT_DELAY = 5000; // Tiempo de espera en milisegundos (en este caso, 5 segundos)
+async function enviarDatosPasajeros(pasajeros) {
+    const TIMEOUT_DELAY = 5000; // Tiempo de espera en milisegundos (en este caso, 5 segundos)
 
-        const timeoutPromise = new Promise((resolve, reject) => {
-            setTimeout(() => {
-                reject(new Error("Tiempo de espera excedido. Por favor, inténtalo nuevamente."));
-            }, TIMEOUT_DELAY);
-        });
+    const timeoutPromise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            reject(new Error("Tiempo de espera excedido. Por favor, inténtalo nuevamente."));
+        }, TIMEOUT_DELAY);
+    });
 
-        const fetchPromise = fetch("https://www.royaltyflightsgt.com/api/creacion-cita/sesion-pago", {
-            method: "POST",
-            mode: "no-cors", // Agregar el modo "no-cors" a la solicitud
-            headers: {
-                "Content-Type": "application/json", // Asegurarse de que el tipo de contenido sea JSON
-            },
-            body: JSON.stringify(pasajeros),
-        });
+    const fetchPromise = fetch("https://www.royaltyflightsgt.com/api/creacion-cita/sesion-pago", {
+        method: "POST",
+        mode: "no-cors", // Agregar el modo "no-cors" a la solicitud
+        headers: {
+            "Content-Type": "application/json", // Asegurarse de que el tipo de contenido sea JSON
+        },
+        body: JSON.stringify(pasajeros),
+    });
 
-        try {
-            const response = await Promise.race([timeoutPromise, fetchPromise]);
-            if (response.ok) {
-                const data = await response.json();
-                return data; // Puedes procesar la respuesta del servidor si es necesario
-            } else {
-                throw new Error("Error al enviar los datos de los pasajeros. Por favor, inténtalo nuevamente.");
-            }
-        } catch (error) {
-            console.error(error);
-            // Lógica adicional para manejar el error de tiempo de espera u otros errores
-            throw error;
+    try {
+        const response = await Promise.race([timeoutPromise, fetchPromise]);
+        if (response.ok) {
+            const data = await response.json();
+            return data; // Puedes procesar la respuesta del servidor si es necesario
+        } else {
+            throw new Error("Error al enviar los datos de los pasajeros. Por favor, inténtalo nuevamente.");
         }
+    } catch (error) {
+        console.error(error);
+        // Lógica adicional para manejar el error de tiempo de espera u otros errores
+        throw error;
     }
- 
+}
+
 
 function showToast(message) {
     // Implementa aquí la lógica para mostrar un mensaje de error o notificación al usuario
@@ -419,4 +429,6 @@ function showToast(message) {
     // El código a continuación es solo un ejemplo utilizando 'alert' para mostrar el mensaje
     alert(message);
 }
-/*  ------ */
+/*  ----------  RESUMEN DE LA CITA -------------------*/
+
+

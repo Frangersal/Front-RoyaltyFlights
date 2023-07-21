@@ -57,11 +57,27 @@
         </nav>
     </header>
     <main class="container-fluid" style="margin-top: 5rem;">
+        <section class="row">
+            <div class="col-2  "></div>
+            <div class="col-8  row">
+                <div class="col-12 resumen-box row">
+                    
+                    <div class="col-sm-12 col-md-6  nombres">
+                        nombres
+
+                    </div>
+                    <div class="col-sm-12 col-md-6 cita">
+                        citas
+                        
+                    </div> 
+                </div>
+            </div>
+            <div class="col-2  "></div>
         <form>
             <section class="row">
-                <div class="col-2 bg-secondary"></div>
-                <div class="col-8 bg-success row">
-                    <div class="col-12 bg-marino box-form-p1">
+                <div class="col-2  "></div>
+                <div class="col-8  row">
+                    <div class="col-12 box-form-p1">
                         <nav>
                             <!-- Nav tabs -->
                             <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -70,12 +86,7 @@
                                     aria-selected="true">Pasajeros</button>
                                 <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
                                     data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile"
-                                    aria-selected="false">Fecha y hora</button>
-                                <!--
-                                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab"
-                                    data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact"
-                                    aria-selected="false">Contacto</button>                                    
-                                -->
+                                    aria-selected="false">Fecha y hora</button> 
 
                             </div>
                         </nav>
@@ -88,34 +99,22 @@
                                         <div class="form-group  col-sm-12 col-md-5">
                                             <label for="tipoViaje">Tipo de viaje:</label>
                                             <select class="form-control" id="tipoViaje" required>
-                                                <option value="">Selecciona el tipo de viaje</option>
+                                                <option class="optionInvalido" value="">Selecciona el tipo de viaje</option>
                                                 <option value="1">Paquete Royalty</option>
                                                 <option value="2">Paquete Royalty Plus</option>
-                                                <option value="3">Paquete Royalty Deluxe</option>
-                                                <!-- Agrega más opciones según tus necesidades -->
+                                                <option value="3">Paquete Royalty Deluxe</option> 
                                             </select>
                                         </div>
                                         <div class="form-group col-2">
-                                        </div>
-                                        <!-- -->
-                                        <div class="form-group col-sm-12 col-md-5">
-                                            <label for="cantidad">Cantidad de pasajeros:</label>
-                                            <select class="form-control" id="cantidad" onchange="mostrarInputs()"
-                                                required>
-                                                <option value="">Selecciona la cantidad de pasajeros</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <!-- Agrega más opciones según tus necesidades -->
-                                            </select>
-                                        </div>
+                                        </div> 
+
                                     </div>
                                     <div id="inputs-container">
 
                                     </div>
-                                    <div>
-                                        <button type="button"
-                                        class="btn btn-dark btn-masPasajero btn-lg btn-block" onclick="agregarPasajero()">Agregar pasajero</button>
+                                    <div class="center">
+                                        <button type="button" class="btn btn-dark btn-masPasajero btn-lg btn-block" onclick="agregarPasajero()">Agregar pasajero</button>
+                                        <button type="button" class="btn btn-danger btn-quitarPasajero btn-lg btn-block" onclick="quitarPasajero()">Quitar pasajero</button>
                                     </div>
 
                                 </div>
@@ -188,7 +187,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-2 bg-secondary"></div>
+                <div class="col-2 "></div>
             </section>
         </form>
 
@@ -206,7 +205,8 @@
 
 
 
-    <script src="./src/js/cita.js"></script>
+        <script src="./src/js/resumen.js"></script>
+        <script src="./src/js/cita.js"></script>
 </body>
 
 </html>
