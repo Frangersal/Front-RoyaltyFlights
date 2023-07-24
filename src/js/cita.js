@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
         generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
     });
 });
-  
+
 let cantidadPasajeros = 1; // Variable para almacenar la cantidad de pasajeros actual
 let pasajerosData = {}; // Objeto para almacenar los datos ingresados en los campos de cada pasajero
 
@@ -164,7 +164,7 @@ document.getElementById("tipoViaje").addEventListener("change", async function (
         console.error(error);
     }
 });
- 
+
 // Bloquear o desbloquear el botón "Quitar pasajero" según la cantidad de pasajeros mostrados
 const btnQuitarPasajero = document.querySelector(".btn-quitarPasajero");
 if (pasajerosMostrados === 1) {
@@ -217,6 +217,10 @@ document.querySelector(".btn-cita").addEventListener("click", async function () 
 
     let pasajeros = [];
     let idviaje = parseInt(Date.now().toString()); // Asignar un ID de viaje
+    let idviajeComoCadena = idviaje.toString();
+    let idviajeNueve = idviajeComoCadena.substring(0, 9);
+    let numeroEntero = parseInt(idviajeNueve, 10);
+
     let horaViaje = selectedHours[0]; // Asignar la misma hora para todos los pasajeros
     let precioPaquete = await APIpaquetePrecio(id_paquete);
 
@@ -227,7 +231,7 @@ document.querySelector(".btn-cita").addEventListener("click", async function () 
         let dpi = document.getElementById("dpi" + i).value;
         let peso = parseInt(document.getElementById("peso" + i).value);
         let idpaquete = await APItipoViaje(id_paquete);
-        let precioPorUsuario = precioPaquete / cantidad; 
+        let precioPorUsuario = precioPaquete / cantidad;
 
         // Validar apellidos
         let regexApellidos = /^[A-Za-z\s]+$/;
@@ -276,19 +280,19 @@ document.querySelector(".btn-cita").addEventListener("click", async function () 
         if (!regexPeso.test(peso)) {
             showToast("Peso inválido. Ingresa un peso válido entre 20 y 150.");
             return; // Detener el proceso si el peso es inválido
-        } 
+        }
 
         let pasajero = {
             paqueteId: idpaquete,
-            id_viaje: idviaje,
+            id_viaje: numeroEntero,
             nombres: nombres,
             apellidos: apellidos,
             correo: correo,
             hora: horaViaje,
             dpi: dpi,
-            peso: peso + 0.1,
+            peso: peso,
             fecha: selectedDate,
-            total: precioPorUsuario + 0.1
+            total: precioPorUsuario
         };
 
         pasajeros.push(pasajero);
@@ -397,7 +401,7 @@ async function enviarDatosPasajeros(pasajeros) {
         headers: {
             "Content-Type": "application/json", // Asegurarse de que el tipo de contenido sea JSON
         },
-        body: JSON.stringify(pasajeros),
+        body: pasajeros,
     });
 
     try {
@@ -433,40 +437,3 @@ function showToast(message) {
 
 
 
-
-
-document.addEventListener("DOMContentLoaded", function() {
-    // Obtenemos una referencia al div donde mostraremos los nombres
-    const nombresDiv = document.getElementById('nombres');
-  
-    // Función para actualizar el div con el contenido de los inputs
-    function actualizarNombresDiv() {
-      let contenidoNombre1 = document.getElementById('nombre1')?.value.trim() || '';
-      let contenidoNombre2 = document.getElementById('nombre2')?.value.trim() || '';
-      let contenidoNombre3 = document.getElementById('nombre3')?.value.trim() || '';
-  
-      nombresDiv.innerHTML = `
-        <p>${contenidoNombre1}</p>
-        <p>${contenidoNombre2}</p>
-        <p>${contenidoNombre3}</p>
-      `;
-    }
-  
-    // Agregamos el event listener al evento 'focusout' en los dos primeros inputs, si existen
-    const nombre1Input = document.getElementById('nombre1');
-    if (nombre1Input) {
-      nombre1Input.addEventListener('focusout', actualizarNombresDiv);
-    }
-  
-    const nombre2Input = document.getElementById('nombre2');
-    if (nombre2Input) {
-      nombre2Input.addEventListener('focusout', actualizarNombresDiv);
-    }
-  
-    // Agregamos el event listener al evento 'input' en el último input, si existe
-    const nombre3Input = document.getElementById('nombre3');
-    if (nombre3Input) {
-      nombre3Input.addEventListener('input', actualizarNombresDiv);
-    }
-  });
-  
