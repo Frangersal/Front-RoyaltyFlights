@@ -432,3 +432,41 @@ function showToast(message) {
 /*  ----------  RESUMEN DE LA CITA -------------------*/
 
 
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Obtenemos una referencia al div donde mostraremos los nombres
+    const nombresDiv = document.getElementById('nombres');
+  
+    // Función para actualizar el div con el contenido de los inputs
+    function actualizarNombresDiv() {
+      let contenidoNombre1 = document.getElementById('nombre1')?.value.trim() || '';
+      let contenidoNombre2 = document.getElementById('nombre2')?.value.trim() || '';
+      let contenidoNombre3 = document.getElementById('nombre3')?.value.trim() || '';
+  
+      nombresDiv.innerHTML = `
+        <p>${contenidoNombre1}</p>
+        <p>${contenidoNombre2}</p>
+        <p>${contenidoNombre3}</p>
+      `;
+    }
+  
+    // Agregamos el event listener al evento 'focusout' en los dos primeros inputs, si existen
+    const nombre1Input = document.getElementById('nombre1');
+    if (nombre1Input) {
+      nombre1Input.addEventListener('focusout', actualizarNombresDiv);
+    }
+  
+    const nombre2Input = document.getElementById('nombre2');
+    if (nombre2Input) {
+      nombre2Input.addEventListener('focusout', actualizarNombresDiv);
+    }
+  
+    // Agregamos el event listener al evento 'input' en el último input, si existe
+    const nombre3Input = document.getElementById('nombre3');
+    if (nombre3Input) {
+      nombre3Input.addEventListener('input', actualizarNombresDiv);
+    }
+  });
+  
