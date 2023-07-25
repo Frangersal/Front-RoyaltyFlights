@@ -301,7 +301,8 @@ document.querySelector(".btn-cita").addEventListener("click", async function () 
     //console.log(pasajeros); // Aquí puedes hacer lo que desees con el arreglo de JSONs
 
     console.log(JSON.stringify(pasajeros, null, 2)); // Aquí se muestra el JSON en crudo
-    let jsonPasajeros = JSON.stringify(pasajeros);
+    console.log(pasajeros);
+    //let jsonPasajeros = JSON.stringify(pasajeros);
 
     function isJSON(str) {
         try {
@@ -312,7 +313,7 @@ document.querySelector(".btn-cita").addEventListener("click", async function () 
         }
     }
 
-    console.log(isJSON(jsonPasajeros));
+    //console.log(isJSON(jsonPasajeros));
     // Realizar la llamada fetch dinámica según el tipo de viaje seleccionado
     async function APItipoViaje(tipoViaje) {
         const TIMEOUT_DELAY = 5000; // Tiempo de espera en milisegundos (en este caso, 5 segundos)
@@ -377,7 +378,7 @@ document.querySelector(".btn-cita").addEventListener("click", async function () 
 
     //Llamada a la función para enviar los datos de los pasajeros
     try {
-        await enviarDatosPasajeros(jsonPasajeros);
+        await enviarDatosPasajeros(pasajeros);
         showToast("Datos enviados exitosamente.");
     } catch (error) {
         showToast("Error al enviar los datos. Por favor, inténtalo nuevamente.");
@@ -397,27 +398,29 @@ async function enviarDatosPasajeros(pasajeros) {
 
     const fetchPromise = fetch("https://www.royaltyflightsgt.com/api/creacion-cita/sesion-pago", {
         method: "POST",
-        mode: "no-cors", // Agregar el modo "no-cors" a la solicitud
+        mode: "cors",
         headers: {
-            "Content-Type": "application/json", // Asegurarse de que el tipo de contenido sea JSON
+            "Content-Type": "application/json",
         },
-        body: pasajeros,
+        body: JSON.stringify(pasajeros), // Convertir el arreglo en JSON
     });
+    
 
     try {
         const response = await Promise.race([timeoutPromise, fetchPromise]);
         if (response.ok) {
             const data = await response.json();
+            console.log("Respuesta del servidor:", data); // Mostrar la respuesta del servidor en la consola
             return data; // Puedes procesar la respuesta del servidor si es necesario
         } else {
             throw new Error("Error al enviar los datos de los pasajeros. Por favor, inténtalo nuevamente.");
         }
     } catch (error) {
-        console.error(error);
-        // Lógica adicional para manejar el error de tiempo de espera u otros errores
-        throw error;
+        console.error("Error al realizar la solicitud:", error.message);
+        throw error; // Re-lanzar el error para que el llamador también pueda manejarlo
     }
 }
+
 
 
 function showToast(message) {

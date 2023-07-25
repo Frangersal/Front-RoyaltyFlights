@@ -58,137 +58,198 @@
     </header>
     <main class="container-fluid" style="margin-top: 5rem;">
         <section class="row">
+            <!-- 
             <div class="col-2  "></div>
             <div class="col-8  row">
                 <div class="col-12 resumen-box row">
-                    
+
                     <div class="col-sm-12 col-md-6  nombres" id="nombres">
 
                     </div>
                     <div class="col-sm-12 col-md-6 cita">
                         citas
 
-                    </div> 
+                    </div>
                 </div>
             </div>
-            <div class="col-2  "></div>
-        <form>
-            <section class="row">
-                <div class="col-2  "></div>
-                <div class="col-8  row">
-                    <div class="col-12 box-form-p1">
-                        <nav>
-                            <!-- Nav tabs -->
-                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
-                                    data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home"
-                                    aria-selected="true">Pasajeros</button>
-                                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
-                                    data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile"
-                                    aria-selected="false">Fecha y hora</button> 
-
-                            </div>
-                        </nav>
-                        <!-- Tab panes -->
-                        <div class="tab-content" id="nav-tabContent">
-                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
-                                aria-labelledby="nav-home-tab">
-                                <div class="col-12 bg-marino box-form-p1">
-                                    <div class="row">
-                                        <div class="form-group  col-sm-12 col-md-5">
-                                            <label for="tipoViaje">Tipo de viaje:</label>
-                                            <select class="form-control" id="tipoViaje" required>
-                                                <option class="optionInvalido" value="">Selecciona el tipo de viaje</option>
-                                                <option value="1">Paquete Royalty</option>
-                                                <option value="2">Paquete Royalty Plus</option>
-                                                <option value="3">Paquete Royalty Deluxe</option> 
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-2">
-                                        </div> 
-
-                                    </div>
-                                    <div id="inputs-container">
-
-                                    </div>
-                                    <div class="center">
-                                        <button type="button" class="btn btn-dark btn-masPasajero btn-lg btn-block" onclick="agregarPasajero()">Agregar pasajero</button>
-                                        <button type="button" class="btn btn-danger btn-quitarPasajero btn-lg btn-block" onclick="quitarPasajero()">Quitar pasajero</button>
-                                    </div>
+            <div class="col-2  "></div>                
+            -->
+            <form>
+                <section class="row">
+                    <div class="col-2  "></div>
+                    <div class="col-8  row">
+                        <div class="col-12 box-form-p1">
+                            <nav>
+                                <!-- Nav tabs -->
+                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
+                                        data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home"
+                                        aria-selected="true">Pasajeros</button>
+                                    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
+                                        data-bs-target="#nav-profile" type="button" role="tab"
+                                        aria-controls="nav-profile" aria-selected="false">Fecha y hora</button>
+                                    <button class="nav-link" id="nav-resumen-tab" data-bs-toggle="tab"
+                                        data-bs-target="#nav-resumen" type="button" role="tab"
+                                        aria-controls="nav-resumen" aria-selected="false">Resumen y pago</button>
 
                                 </div>
-                            </div>
-                            <div class="tab-pane fade" id="nav-profile" role="tabpanel"
-                                aria-labelledby="nav-profile-tab">
-                                <section class="row">
-                                    <div class="col-12  box-fecha-hora row">
-                                        <div class="col-6   center">
-                                            <div class="calendar">
-                                                <div class="date-picker">
-                                                    <input type="date" id="selected-date" readonly />
-                                                </div>
-
-                                                <div class="calendar-header">
-                                                    <button id="prev-month">&lt;</button>
-                                                    <h1 id="current-month"></h1>
-                                                    <button id="next-month">&gt;</button>
-                                                </div>
-
-                                                <table id="calendar-body">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Dom</th>
-                                                            <th>Lun</th>
-                                                            <th>Mar</th>
-                                                            <th>Mié</th>
-                                                            <th>Jue</th>
-                                                            <th>Vie</th>
-                                                            <th>Sáb</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody></tbody>
-                                                </table>
+                            </nav>
+                            <!-- Tab panes -->
+                            <div class="tab-content" id="nav-tabContent">
+                                <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                                    aria-labelledby="nav-home-tab">
+                                    <div class="col-12 bg-marino box-form-p1">
+                                        <div class="row">
+                                            <div class="form-group  col-sm-12 col-md-5">
+                                                <label for="tipoViaje">Tipo de viaje:</label>
+                                                <select class="form-control" id="tipoViaje" required>
+                                                    <option class="optionInvalido" value="">Selecciona el tipo de viaje
+                                                    </option>
+                                                    <option value="1">Paquete Royalty</option>
+                                                    <option value="2">Paquete Royalty Plus</option>
+                                                    <option value="3">Paquete Royalty Deluxe</option>
+                                                </select>
                                             </div>
-                                        </div>
-                                        <div class="col-6   center">
-                                            <!-- Aquí va el código de la hora -->
-                                            <select class="form-select select-hora" multiple
-                                                aria-label="multiple select example">
-                                                <option class="option-hora" value="08:00:00">8:00 AM</option>
-                                                <option class="option-hora" value="09:00:00">9:00 AM</option>
-                                                <option class="option-hora" value="10:00:00">10:00 AM</option>
-                                                <option class="option-hora" value="11:00:00">11:00 AM</option>
-                                                <option class="option-hora" value="12:00:00">12:00 PM</option>
-                                                <option class="option-hora" value="13:00:00">1:00 PM</option>
-                                                <option class="option-hora" value="14:00:00">2:00 PM</option>
-                                                <option class="option-hora" value="15:00:00">3:00 PM</option>
-                                                <option class="option-hora" value="16:00:00">4:00 PM</option>
-                                                <option class="option-hora" value="17:00:00">5:00 PM</option>
-                                                <option class="option-hora" value="18:00:00">6:00 PM</option>
-                                                <option class="option-hora" value="19:00:00">7:00 PM</option>
-                                                <option class="option-hora" value="20:00:00">8:00 PM</option>
-                                                <option class="option-hora" value="21:00:00">9:00 PM</option>
-                                                <option class="option-hora" value="22:00:00">10:00 PM</option>
-                                                <option class="option-hora" value="23:00:00">11:00 PM</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-12 center">
-                                            <button type="button"
-                                                class="btn btn-dark btn-cita btn-lg btn-block">Realizar cita</button>
-                                        </div>
-                                </section>
-                            </div>
+                                            <div class="form-group col-2">
+                                            </div>
 
-                            <div class="tab-pane fade" id="nav-contact" role="tabpanel"
-                                aria-labelledby="nav-contact-tab">
-                                <!-- Aquí va el código del contacto -->
+                                        </div>
+                                        <div id="inputs-container">
+
+                                        </div>
+                                        <div class="center">
+                                            <button type="button" class="btn btn-dark btn-masPasajero btn-lg btn-block"
+                                                onclick="agregarPasajero()">Agregar pasajero</button>
+                                            <button type="button"
+                                                class="btn btn-danger btn-quitarPasajero btn-lg btn-block"
+                                                onclick="quitarPasajero()">Quitar pasajero</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="nav-profile" role="tabpanel"
+                                    aria-labelledby="nav-profile-tab">
+                                    <section class="row">
+                                        <div class="col-12  box-fecha-hora row">
+                                            <div class="col-6   center">
+                                                <div class="calendar">
+                                                    <div class="date-picker">
+                                                        <input type="date" id="selected-date" readonly />
+                                                    </div>
+
+                                                    <div class="calendar-header">
+                                                        <button id="prev-month">&lt;</button>
+                                                        <h1 id="current-month"></h1>
+                                                        <button id="next-month">&gt;</button>
+                                                    </div>
+
+                                                    <table id="calendar-body">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Dom</th>
+                                                                <th>Lun</th>
+                                                                <th>Mar</th>
+                                                                <th>Mié</th>
+                                                                <th>Jue</th>
+                                                                <th>Vie</th>
+                                                                <th>Sáb</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody></tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="col-6   center">
+                                                <!-- Aquí va el código de la hora -->
+                                                <select class="form-select select-hora" multiple
+                                                    aria-label="multiple select example">
+                                                    <option class="option-hora" value="08:00:00">8:00 AM</option>
+                                                    <option class="option-hora" value="09:00:00">9:00 AM</option>
+                                                    <option class="option-hora" value="10:00:00">10:00 AM</option>
+                                                    <option class="option-hora" value="11:00:00">11:00 AM</option>
+                                                    <option class="option-hora" value="12:00:00">12:00 PM</option>
+                                                    <option class="option-hora" value="13:00:00">1:00 PM</option>
+                                                    <option class="option-hora" value="14:00:00">2:00 PM</option>
+                                                    <option class="option-hora" value="15:00:00">3:00 PM</option>
+                                                    <option class="option-hora" value="16:00:00">4:00 PM</option>
+                                                    <option class="option-hora" value="17:00:00">5:00 PM</option>
+                                                    <option class="option-hora" value="18:00:00">6:00 PM</option>
+                                                    <option class="option-hora" value="19:00:00">7:00 PM</option>
+                                                    <option class="option-hora" value="20:00:00">8:00 PM</option>
+                                                    <option class="option-hora" value="21:00:00">9:00 PM</option>
+                                                    <option class="option-hora" value="22:00:00">10:00 PM</option>
+                                                    <option class="option-hora" value="23:00:00">11:00 PM</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-12 center">
+                                                <button type="button"
+                                                    class="btn btn-dark btn-cita btn-lg btn-block">Realizar
+                                                    cita</button>
+                                            </div>
+                                    </section>
+                                </div>
+
+                                <div class="tab-pane fade" id="nav-resumen" role="tabpanel"
+                                    aria-labelledby="nav-resumen-tab">
+                                    <!-- Aquí va el código del contacto -->
+                                    <section class="row">
+                                        <div class="col-12 center">
+                                            <div class="ticket">
+                                                <div class="ticket-top">
+                                                    <h4>Royalty Flights</h4>
+                                                    <div class="ticket-text"> <b class="ticket-text">Tipo de viaje:</b></div> 
+                                                    <span  class="ticket-text" >Paquete Royalty Deluxe</span>
+                                                    <div class="ticket-text"> <b class="ticket-text">Pasajeros:</b></div> 
+                                                    <div class="row">
+                                                    <div class="col-8 ticket-text">
+                                                        <ul class="no-bullets ">
+                                                            <li class="ticket-text">Francisco Gerardo Mendoza</li>
+                                                            <li class="ticket-text">Francisco Mendoza</li>
+                                                            <li class="ticket-text">Francisco Mendoza</li>
+                                                            <li class="ticket-text">Francisco Mendoza</li>
+                                                            <li class="ticket-text">---------------</li>
+                                                            <li class="ticket-text">Total:</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-4 ticket-text">
+
+                                                        <ul class="no-bullets ">
+                                                            <li class="ticket-text">- Q300.00</li> 
+                                                            <li class="ticket-text">- Q300.00</li> 
+                                                            <li class="ticket-text">- Q300.00</li> 
+                                                            <li class="ticket-text">- Q300.00</li> 
+                                                            <li class="ticket-text">---------------</li>
+                                                            <li class="ticket-text">- Q2200.00</li> 
+                                                        </ul>
+                                                    </div>
+
+                                                    </div>
+                                                </div>
+                                                <!-- Inicio de bolitas y cortes -->
+                                                <div class="bolias-cortes">
+                                                  <div class="bolita-r"> </div>
+                                                  <hr class="cortes">
+                                                  <div class="bolita-l"> </div>
+                                                </div>
+                                                <!-- Fin de bolitas y cortes -->
+                                                <div class="ticket-bottom"> 
+                                                    <div class="ticket-text"> <b class="ticket-text">Fecha:</b></div> 
+                                                    <span  class="ticket-text" >25 de Diciembre de 2023</span>
+                                                    <div class="ticket-text"> <b class="ticket-text">Hora:</b></div> 
+                                                    <span  class="ticket-text" >12:30 AM</span>
+
+                                                </div>
+                                              </div>
+                                        </div> 
+
+                                    </section>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-2 "></div>
-            </section>
-        </form>
+                    <div class="col-2 "></div>
+                </section>
+            </form>
 
     </main>
     <footer>
@@ -203,11 +264,11 @@
 
 
 
-<!--- 
+    <!--- 
         <script src="./src/js/resumen.js"></script>
 
 -->
-        <script src="./src/js/cita.js"></script>
+    <script src="./src/js/cita.js"></script>
 </body>
 
 </html>
