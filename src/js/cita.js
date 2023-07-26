@@ -220,7 +220,12 @@ document.querySelector(".btn-cita").addEventListener("click", async function () 
     let idviajeComoCadena = idviaje.toString();
     let idviajeNueve = idviajeComoCadena.substring(0, 9);
     let numeroEntero = parseInt(idviajeNueve, 10);
-
+    // Tipo paquete
+    let regexPaquete = /^[1-3]$/;
+    if (!regexPaquete.test(id_paquete)) {
+        showToast("Selecciono paquete invalido. Seleccione en la seccion pasajeros.");
+        return; // Detener el proceso si los apellidos son inválidos
+    }
     let horaViaje = selectedHours[0]; // Asignar la misma hora para todos los pasajeros
     let precioPaquete = await APIpaquetePrecio(id_paquete);
 
@@ -232,6 +237,7 @@ document.querySelector(".btn-cita").addEventListener("click", async function () 
         let peso = parseInt(document.getElementById("peso" + i).value);
         let idpaquete = await APItipoViaje(id_paquete);
         let precioPorUsuario = precioPaquete / cantidad;
+
 
         // Validar apellidos
         let regexApellidos = /^[A-Za-z\s]+$/;
@@ -343,38 +349,6 @@ document.querySelector(".btn-cita").addEventListener("click", async function () 
         }
     }
 
-    async function APIpaquetePrecio(tipoViaje) {
-        const TIMEOUT_DELAY = 5000; // Tiempo de espera en milisegundos (en este caso, 5 segundos)
-
-        const timeoutPromise = new Promise((resolve, reject) => {
-            setTimeout(() => {
-                reject(new Error("Tiempo de espera excedido. Por favor, inténtalo nuevamente."));
-            }, TIMEOUT_DELAY);
-        });
-
-        const fetchPromise = fetch(`https://www.royaltyflightsgt.com/api/paquetes/${tipoViaje}`, {
-            method: "GET"
-        });
-
-        try {
-            const response = await Promise.race([timeoutPromise, fetchPromise]);
-            if (response.ok) {
-                const data = await response.json();
-                if (data.hasOwnProperty('precio')) {
-                    const precio = data.precio;
-                    return precio; // Retornar solo el valor del campo 'precio'
-                } else {
-                    throw new Error("El JSON obtenido no contiene el campo 'precio'.");
-                }
-            } else {
-                throw new Error("Error al obtener los datos del paquete. Por favor, inténtalo nuevamente.");
-            }
-        } catch (error) {
-            console.error(error);
-            // Lógica adicional para manejar el error de tiempo de espera u otros errores
-            throw error;
-        }
-    }
 
     //Llamada a la función para enviar los datos de los pasajeros
     try {
@@ -387,6 +361,38 @@ document.querySelector(".btn-cita").addEventListener("click", async function () 
 
 });
 
+async function APIpaquetePrecio(tipoViaje) {
+    const TIMEOUT_DELAY = 5000; // Tiempo de espera en milisegundos (en este caso, 5 segundos)
+
+    const timeoutPromise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            reject(new Error("Tiempo de espera excedido. Por favor, inténtalo nuevamente."));
+        }, TIMEOUT_DELAY);
+    });
+
+    const fetchPromise = fetch(`https://www.royaltyflightsgt.com/api/paquetes/${tipoViaje}`, {
+        method: "GET"
+    });
+
+    try {
+        const response = await Promise.race([timeoutPromise, fetchPromise]);
+        if (response.ok) {
+            const data = await response.json();
+            if (data.hasOwnProperty('precio')) {
+                const precio = data.precio;
+                return precio; // Retornar solo el valor del campo 'precio'
+            } else {
+                throw new Error("El JSON obtenido no contiene el campo 'precio'.");
+            }
+        } else {
+            throw new Error("Error al obtener los datos del paquete. Por favor, inténtalo nuevamente.");
+        }
+    } catch (error) {
+        console.error(error);
+        // Lógica adicional para manejar el error de tiempo de espera u otros errores
+        throw error;
+    }
+}
 async function enviarDatosPasajeros(pasajeros) {
     const TIMEOUT_DELAY = 5000; // Tiempo de espera en milisegundos (en este caso, 5 segundos)
 
@@ -404,7 +410,7 @@ async function enviarDatosPasajeros(pasajeros) {
         },
         body: JSON.stringify(pasajeros), // Convertir el arreglo en JSON
     });
-    
+
 
     try {
         const response = await Promise.race([timeoutPromise, fetchPromise]);
@@ -438,5 +444,193 @@ function showToast(message) {
 }
 /*  ----------  RESUMEN DE LA CITA -------------------*/
 
+async function APIhtmlSubtotal(tipoViaje, numeroPasajeros) {
+    const TIMEOUT_DELAY = 2000; // Tiempo de espera en milisegundos (en este caso, 5 segundos)
+
+    const timeoutPromise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            reject(new Error("Tiempo de espera excedido. Por favor, inténtalo nuevamente."));
+        }, TIMEOUT_DELAY);
+    });
+
+    const fetchPromise = fetch(`https://www.royaltyflightsgt.com/api/paquetes/${tipoViaje}`, {
+        method: "GET"
+    });
+
+    try {
+        const response = await Promise.race([timeoutPromise, fetchPromise]);
+        if (response.ok) {
+            const data = await response.json();
+            if (data.hasOwnProperty('precio')) {
+                const nombre_paquete = data.nombre_paquete;
+                const precio = data.precio;
+                let subtotal = precio / numeroPasajeros;
+                let subtotalHtml = `Q${subtotal.toFixed(2)}`;
+                return subtotalHtml; // Retornar solo el valor del campo 'precio'
+            } else {
+                throw new Error("El JSON obtenido no contiene el campo 'precio'.");
+            }
+        } else {
+            throw new Error("Error al obtener los datos del paquete. Por favor, inténtalo nuevamente.");
+        }
+    } catch (error) {
+        console.error(error);
+        // Lógica adicional para manejar el error de tiempo de espera u otros errores
+        throw error;
+    }
+}
+
+async function APIhtmlTotal(tipoViaje) {
+    const TIMEOUT_DELAY = 2000; // Tiempo de espera en milisegundos (en este caso, 5 segundos)
+
+    const timeoutPromise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            reject(new Error("Tiempo de espera excedido. Por favor, inténtalo nuevamente."));
+        }, TIMEOUT_DELAY);
+    });
+
+    const fetchPromise = fetch(`https://www.royaltyflightsgt.com/api/paquetes/${tipoViaje}`, {
+        method: "GET"
+    });
+
+    try {
+        const response = await Promise.race([timeoutPromise, fetchPromise]);
+        if (response.ok) {
+            const data = await response.json();
+            if (data.hasOwnProperty('precio')) {
+                const precio = data.precio;
+                let resultado = `Q${precio}`;
+                return resultado; // Retornar solo el valor del campo 'precio'
+            } else {
+                throw new Error("El JSON obtenido no contiene el campo 'precio'.");
+            }
+        } else {
+            throw new Error("Error al obtener los datos del paquete. Por favor, inténtalo nuevamente.");
+        }
+    } catch (error) {
+        console.error(error);
+        // Lógica adicional para manejar el error de tiempo de espera u otros errores
+        throw error;
+    }
+}
+async function APIhtmlNombreTipoViaje(tipoViaje) {
+    const TIMEOUT_DELAY = 2000; // Tiempo de espera en milisegundos (en este caso, 5 segundos)
+
+    const timeoutPromise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            reject(new Error("Tiempo de espera excedido. Por favor, inténtalo nuevamente."));
+        }, TIMEOUT_DELAY);
+    });
+
+    const fetchPromise = fetch(`https://www.royaltyflightsgt.com/api/paquetes/${tipoViaje}`, {
+        method: "GET"
+    });
+
+    try {
+        const response = await Promise.race([timeoutPromise, fetchPromise]);
+        if (response.ok) {
+            const data = await response.json();
+            if (data.hasOwnProperty('precio')) {
+                const nombre_paquete = data.nombre_paquete;
+                let resultado = `${nombre_paquete}`;
+                return resultado; // Retornar solo el valor del campo 'precio'
+            } else {
+                throw new Error("El JSON obtenido no contiene el campo 'nombre_paquete'.");
+            }
+        } else {
+            throw new Error("Error al obtener los datos del paquete nombre_paquete. Por favor, inténtalo nuevamente.");
+        }
+    } catch (error) {
+        console.error(error);
+        // Lógica adicional para manejar el error de tiempo de espera u otros errores
+        throw error;
+    }
+}
+// Obtener el elemento con el ID "nav-resumen-tab"
+const navResumenTab = document.getElementById('nav-resumen-tab');
+
+// Función que se ejecutará cuando se haga clic en el elemento
+function clicEnNavResumen() {
+    console.log('¡Se hizo clic en "Resumen"!');
+    // Aquí puedes agregar cualquier acción adicional que desees realizar.
+}
+
+// Agregar el listener de clic al elemento
+navResumenTab.addEventListener('click', async function () {
+    
+    let contadorPasajeros = 0;
+    
+    let id_paquete = parseInt(document.getElementById("tipoViaje").value);
+    let selectedDate = document.getElementById("selected-date").value;
+    let selectedHours = Array.from(document.querySelectorAll(".option-hora:checked")).map(option => option.value);
+    let precioPaquete = await APIpaquetePrecio(id_paquete);
+
+    clicEnNavResumen();
+    
+
+    //Generar tipo de viaje 
+    let ticketTipoViaje = document.getElementById('ticket-tipo-viaje');
+    ticketTipoViaje.textContent = await APIhtmlNombreTipoViaje(id_paquete);
+
+    // Generar nombres 
+    function guardarDatosSiExiste(inputId) {
+        let inputElement = document.getElementById(inputId);
+        if (inputElement) {
+            contadorPasajeros++;
+            return inputElement.value;
+        } 
+        return null;
+
+    }
+
+    let nombre1 = guardarDatosSiExiste('nombre1');
+    let nombre2 = guardarDatosSiExiste('nombre2');
+    let nombre3 = guardarDatosSiExiste('nombre3');
+    let nombre4 = guardarDatosSiExiste('nombre4');
+
+    let ticketNombre1 = document.getElementById('ticket-nombre1');
+    let ticketNombre2 = document.getElementById('ticket-nombre2');
+    let ticketNombre3 = document.getElementById('ticket-nombre3');
+    let ticketNombre4 = document.getElementById('ticket-nombre4');
+
+    ticketNombre1.textContent = nombre1;
+    ticketNombre2.textContent = nombre2;
+    ticketNombre3.textContent = nombre3;
+    ticketNombre4.textContent = nombre4;
+
+    // Generar Subtotal
+    try {
+        let calcularSubtotal = await APIhtmlSubtotal(id_paquete, contadorPasajeros);
+
+        // Recorremos el array de subtotales y los mostramos en los elementos HTML correspondientes
+        for (let i = 1; i <= contadorPasajeros; i++) {
+            let subtotal = calcularSubtotal;
+            let ticketSubtotalElement = document.getElementById(`ticket-subtotal${i}`);
+            ticketSubtotalElement.textContent = '';
+            ticketSubtotalElement.textContent = subtotal;
+            console.log("i-"+i)
+        }
+    } catch (error) {
+        console.error("Error al obtener los subtotales:", error);
+    }
 
 
+    //Generar Total
+    let ticketTotal = document.getElementById('ticket-total');
+    ticketTotal.textContent = await APIhtmlTotal(id_paquete);
+
+    // Generar Fecha
+    let fechaSeleccionada = document.getElementById("selected-date").value;
+    let ticketFecha = document.getElementById('ticket-fecha');
+    ticketFecha.textContent = fechaSeleccionada;
+    // Generar Hora 
+    let horaSeleccionada = Array.from(document.querySelectorAll(".option-hora:checked")).map(option => option.value);
+
+    let ticketHora = document.getElementById('ticket-hora');
+    ticketHora.textContent = horaSeleccionada;
+    // Mostrar los valores en la consola (puedes hacer lo que desees con ellos)
+    console.log('Nombre 1:', nombre1);
+    console.log('Nombre 2:', nombre2);
+    console.log('Nombre 3:', nombre3);
+    console.log('Nombre 4:', nombre4);
+});

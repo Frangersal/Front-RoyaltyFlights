@@ -103,8 +103,7 @@
                                             <div class="form-group  col-sm-12 col-md-5">
                                                 <label for="tipoViaje">Tipo de viaje:</label>
                                                 <select class="form-control" id="tipoViaje" required>
-                                                    <option class="optionInvalido" value="">Selecciona el tipo de viaje
-                                                    </option>
+                                                    <option value="" disabled selected>Selecciona el tipo de viaje</option>
                                                     <option value="1">Paquete Royalty</option>
                                                     <option value="2">Paquete Royalty Plus</option>
                                                     <option value="3">Paquete Royalty Deluxe</option>
@@ -180,12 +179,7 @@
                                                     <option class="option-hora" value="22:00:00">10:00 PM</option>
                                                     <option class="option-hora" value="23:00:00">11:00 PM</option>
                                                 </select>
-                                            </div>
-                                            <div class="col-12 center">
-                                                <button type="button"
-                                                    class="btn btn-dark btn-cita btn-lg btn-block">Realizar
-                                                    cita</button>
-                                            </div>
+                                            </div> 
                                     </section>
                                 </div>
 
@@ -198,28 +192,28 @@
                                                 <div class="ticket-top">
                                                     <h4>Royalty Flights</h4>
                                                     <div class="ticket-text"> <b class="ticket-text">Tipo de viaje:</b></div> 
-                                                    <span  class="ticket-text" >Paquete Royalty Deluxe</span>
+                                                    <span  class="ticket-text"  id="ticket-tipo-viaje" ><span class="sinSeleccionar">Sin tipo de viaje seleccionado</span></span>
                                                     <div class="ticket-text"> <b class="ticket-text">Pasajeros:</b></div> 
                                                     <div class="row">
                                                     <div class="col-8 ticket-text">
                                                         <ul class="no-bullets ">
-                                                            <li class="ticket-text">Francisco Gerardo Mendoza</li>
-                                                            <li class="ticket-text">Francisco Mendoza</li>
-                                                            <li class="ticket-text">Francisco Mendoza</li>
-                                                            <li class="ticket-text">Francisco Mendoza</li>
-                                                            <li class="ticket-text">---------------</li>
+                                                            <li class="ticket-text" id="ticket-nombre1"><span class="sinSeleccionar">Sin pasajeros agregados</span></li>
+                                                            <li class="ticket-text" id="ticket-nombre2"></li>
+                                                            <li class="ticket-text" id="ticket-nombre3"></li>
+                                                            <li class="ticket-text" id="ticket-nombre4"></li>
+                                                            <li class="ticket-text" id="">---------------</li>
                                                             <li class="ticket-text">Total:</li>
                                                         </ul>
                                                     </div>
                                                     <div class="col-4 ticket-text">
 
                                                         <ul class="no-bullets ">
-                                                            <li class="ticket-text">- Q300.00</li> 
-                                                            <li class="ticket-text">- Q300.00</li> 
-                                                            <li class="ticket-text">- Q300.00</li> 
-                                                            <li class="ticket-text">- Q300.00</li> 
+                                                            <li class="ticket-text" id="ticket-subtotal1"><span class="sinSeleccionar">Q0.00</span></li> 
+                                                            <li class="ticket-text" id="ticket-subtotal2"></li> 
+                                                            <li class="ticket-text" id="ticket-subtotal3"></li> 
+                                                            <li class="ticket-text" id="ticket-subtotal4"></li> 
                                                             <li class="ticket-text">---------------</li>
-                                                            <li class="ticket-text">- Q2200.00</li> 
+                                                            <li class="ticket-text" id="ticket-total"><span class="sinSeleccionar">Q0.00</span></li> 
                                                         </ul>
                                                     </div>
 
@@ -233,15 +227,23 @@
                                                 </div>
                                                 <!-- Fin de bolitas y cortes -->
                                                 <div class="ticket-bottom"> 
-                                                    <div class="ticket-text"> <b class="ticket-text">Fecha:</b></div> 
-                                                    <span  class="ticket-text" >25 de Diciembre de 2023</span>
-                                                    <div class="ticket-text"> <b class="ticket-text">Hora:</b></div> 
-                                                    <span  class="ticket-text" >12:30 AM</span>
-
+                                                   
+                                                     <b class="ticket-text">Fecha:</b> 
+                                                    <span  class="ticket-text" id="ticket-fecha"><span class="sinSeleccionar">Sin Fecha seleccionada</span></span>
+                                                    <br>
+                                                     <b class="ticket-text">Hora:</b> 
+                                                    <span  class="ticket-text" id="ticket-hora" ><span class="sinSeleccionar">Sin Hora seleccionada</span></span>
+                                                    <!-- 
+ <img class="ticket-logo" src="./src/assets/images/Logo-RoyaltyFlights.png" alt="">
+-->
                                                 </div>
                                               </div>
                                         </div> 
-
+                                        <div class="col-12 center">
+                                            <button type="button"
+                                                class="btn btn-dark btn-cita btn-lg btn-block">Realizar
+                                                cita</button>
+                                        </div>
                                     </section>
                                 </div>
                             </div>

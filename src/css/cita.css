@@ -295,9 +295,7 @@ main {
   justify-content: center;
   align-items: center;
 }
-.optionInvalido{
-  color: #949494;
-}
+
 .select-hora {
   height: 300px;
   width: 300px;
@@ -340,6 +338,12 @@ h4{
   font-family: Arial, Helvetica, sans-serif!important;
 
 }
+.sinSeleccionar{
+  width: auto;
+  color: #ca0000!important;
+  font-size: 12px!important;
+  font-family: Arial, Helvetica, sans-serif!important; 
+}
 .no-bullets {
   list-style-type: none;
   padding-left: 0;
@@ -367,7 +371,19 @@ h4{
   background-color: rgba(0, 100, 0, 0); 
   color: #000;
   font-size: 15px!important;
-  font-family: Arial, Helvetica, sans-serif!important;
+  font-family: Arial, Helvetica, sans-serif!important; 
+  z-index: 1;
+}
+.ticket-logo{
+  height: 100px; 
+  position: relative;
+  right: -75px;
+  top: -33px;
+  z-index: 1000;
+
+}
+.box-fecha{
+  width: auto;
 }
 .bolita-r {
   margin-right: 1px;
