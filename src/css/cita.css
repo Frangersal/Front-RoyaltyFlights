@@ -20,7 +20,7 @@
 
 .form-group {
   padding-bottom: 0.9rem;
- /*  Ajusta el valor de padding según tus preferencias */
+  /*  Ajusta el valor de padding según tus preferencias */
 }
 
 .row {
@@ -69,7 +69,8 @@ body {
   margin: 1rem;
   font-size: 11px;
 }
-#current-month{
+
+#current-month {
   font-size: 20px;
 }
 
@@ -81,13 +82,13 @@ body {
 }
 
 #calendar-body {
-  width: 100%; 
+  width: 100%;
 }
 
 th,
 td {
   text-align: center;
-  padding:4px;
+  padding: 4px;
   font-size: 14px;
 }
 
@@ -133,7 +134,7 @@ td.selected {
   position: relative;
   padding: 0.3rem;
   overflow: hidden;
-  background-color: #0d1f44!important;
+  background-color: var(--a-marino) !important;
 }
 
 .nav-item::before {
@@ -166,17 +167,16 @@ td.selected {
 .nav-link {
   position: relative;
   /* Aseguramos que el texto se muestre encima del pseudo-elemento */
-  color: #0d1f44!important;
+  color: #0d1f44 !important;
   /* Ajusta el color del texto según tus preferencias */
   /*text-shadow:  2px 2px 5px #092054, -2px -2px 5px #092054, -2px 2px 5px #092054, 2px -2px 5px #092054;
   /*font-weight: bold;
   padding-right: 0!important;*/
-  background-color: #cecece!important;
-  border-bottom: 1px solid #00df1a00!important;
-} 
-.nav-tab.nav.nav-tabs{
-
+  background-color: #cecece !important;
+  border-bottom: 1px solid #00df1a00 !important;
 }
+
+.nav-tab.nav.nav-tabs {}
 
 .nav-flights-box {
   background-color: rgba(161, 54, 54, 0);
@@ -204,7 +204,7 @@ td.selected {
   flex-wrap: wrap;
 }
 
-.tab-content{
+.tab-content {
   border-radius: 10px;
 }
 
@@ -252,7 +252,7 @@ main {
 }
 
 .navbar {
-  background-color: #0d1f44;
+  background-color: var(--a-marino);
   transition: background-color 0.5s ease;
   border-bottom: none;
   /* Removemos el borde inferior predeterminado */
@@ -308,13 +308,15 @@ main {
   background-color: black;
   border: black 1px solid;
 }
-.active{
-  background-color: #092054!important;
-  color: #fff!important;
+
+.active {
+  background-color: var(--a-marino) !important;
+  color: #fff !important;
 }
-.resumen-box{
+
+.resumen-box {
   background-color: #CECECE;
-  height: 10rem!important;
+  height: 10rem !important;
 }
 
 
@@ -330,66 +332,72 @@ TICKET
   box-shadow: white 1px;
   margin: 1rem;
 }
-h4{
+
+h4 {
   font-size: 20px;
 }
-.ticket-text{
-  font-size: 12px!important;
-  font-family: Arial, Helvetica, sans-serif!important;
+
+.ticket-text {
+  font-size: 12px !important;
+  font-family: Arial, Helvetica, sans-serif !important;
 
 }
-.sinSeleccionar{
+
+.sinSeleccionar {
   width: auto;
-  color: #ca0000!important;
-  font-size: 12px!important;
-  font-family: Arial, Helvetica, sans-serif!important; 
+  color: #ca0000 !important;
+  font-size: 12px !important;
+  font-family: Arial, Helvetica, sans-serif !important;
 }
+
 .no-bullets {
   list-style-type: none;
   padding-left: 0;
 }
-.ticket-top{
+
+.ticket-top {
   height: 230px;
   width: 100%;
   padding: 1.5rem;
   background-color: rgba(0, 100, 0, 0);
-  
+
   color: #000;
- 
-  font-size: 15px!important;
-  font-family: Arial, Helvetica, sans-serif!important;
+
+  font-size: 15px !important;
+  font-family: Arial, Helvetica, sans-serif !important;
 
 }
-.bolias-cortes{
+
+.bolias-cortes {
   background-color: rgba(255, 99, 71, 0);
   height: 40px;
 }
-.ticket-bottom{
+
+.ticket-bottom {
   height: 130px;
   width: 100%;
   padding: 1.5rem;
-  background-color: rgba(0, 100, 0, 0); 
+  background-color: rgba(0, 100, 0, 0);
   color: #000;
-  font-size: 15px!important;
-  font-family: Arial, Helvetica, sans-serif!important; 
+  font-size: 15px !important;
+  font-family: Arial, Helvetica, sans-serif !important;
   z-index: 1;
 }
-.ticket-logo{
-  height: 100px; 
-  position: relative;
-  right: -75px;
-  top: -33px;
-  z-index: 1000;
+
+.ticket-logo {
+  height: 100px;
 
 }
-.box-fecha{
+
+.box-fecha {
   width: auto;
 }
+
 .bolita-r {
   margin-right: 1px;
   width: 40px;
   height: 40px;
-  background-color:var(--a-marino);
+  background-color: var(--a-marino);
   border-radius: 30px;
   border: 1px solid rgba(94, 94, 100, 0);
   position: relative;
@@ -409,12 +417,59 @@ h4{
 }
 
 .cortes {
-  height: 3px!important;
+  height: 3px !important;
   width: 300px;
   border: none;
   border-top: 3px dotted var(--a-marino);
   position: relative;
   top: -38px;
-  opacity: 1!important;
-  background-color: #00df1a00!important;
+  opacity: 1 !important;
+  background-color: #00df1a00 !important;
+}
+
+
+.btn-masPasajero {
+  margin: 0.5rem;
+  background-color: #04a00400 !important;
+  border: #ffffff solid 2px !important;
+  color: #ffffff;
+  width: 250px;
+}
+
+.btn-masPasajero:hover {
+  margin: 0.5rem;
+  background-color: #208320a1 !important;
+  border: #ffffff solid 2px !important;
+  color: #ffffff;
+}
+
+.btn-quitarPasajero {
+
+  background-color: #04a00400 !important;
+  border: #ffffff solid 2px !important;
+  margin: 0.5rem;
+  color: #ffffff;
+  width: 250px;
+}
+
+.btn-quitarPasajero:hover {
+
+  background-color: #832020a1 !important;
+  border: #ffffff solid 2px !important;
+  margin: 0.5rem;
+  color: #ffffff;
+}
+
+.btn-cita {
+  margin: 1rem;
+  background-color: #04a00400 !important;
+  border: #ffffff solid 2px !important;
+  color: #ffffff;
+  width: 300px;
+}
+.btn-cita:hover  {
+  margin: 1rem;
+  background-color: #208320a1 !important;
+  border: #ffffff solid 2px !important;
+  color: #ffffff;
 }

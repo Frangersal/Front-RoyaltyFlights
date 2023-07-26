@@ -156,7 +156,13 @@ async function APImxPersonas(tipoViaje) {
     }
 }
 document.getElementById("tipoViaje").addEventListener("change", async function () {
+    let infoNombre = parseInt(document.getElementById("info-nombre").value);
+    let infoPrecio = parseInt(document.getElementById("info-precio").value);
+
     const tipoViajeValue = this.value;
+    let pantalla = await APIhtmlNombreTipoViajeYTotal(tipoViajeValue);
+    document.getElementById("info-nombre").innerHTML = pantalla;
+    console.log("APIhtmlNombreTipoViajeYTotal "+pantalla);
     try {
         limitePasajeros = await APImxPersonas(tipoViajeValue);
         //console.log("Limite de pasajeros obtenido:", limitePasajeros);
@@ -506,6 +512,7 @@ async function APIhtmlTotal(tipoViaje) {
                 const precio = data.precio;
                 let opciones = { style: 'decimal', useGrouping: true, minimumFractionDigits: 2, maximumFractionDigits: 2 };
                 let resultado = `Q${precio.toFixed(2).toLocaleString(undefined, opciones)}`;
+
                 return resultado; // Retornar solo el valor del campo 'precio'
             } else {
                 throw new Error("El JSON obtenido no contiene el campo 'precio'.");
@@ -545,6 +552,53 @@ async function APIhtmlNombreTipoViaje(tipoViaje) {
             }
         } else {
             throw new Error("Error al obtener los datos del paquete nombre_paquete. Por favor, inténtalo nuevamente.");
+        }
+    } catch (error) {
+        console.error(error);
+        // Lógica adicional para manejar el error de tiempo de espera u otros errores
+        throw error;
+    }
+}
+async function APIhtmlNombreTipoViajeYTotal(tipoViaje) {
+    const TIMEOUT_DELAY = 2000; // Tiempo de espera en milisegundos (en este caso, 5 segundos)
+
+    const timeoutPromise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            reject(new Error("Tiempo de espera excedido. Por favor, inténtalo nuevamente."));
+        }, TIMEOUT_DELAY);
+    });
+
+    const fetchPromise = fetch(`https://www.royaltyflightsgt.com/api/paquetes/${tipoViaje}`, {
+        method: "GET"
+    });
+
+    try {
+        const response = await Promise.race([timeoutPromise, fetchPromise]);
+        if (response.ok) {
+            const data = await response.json();
+            let opciones = { style: 'decimal', useGrouping: true, minimumFractionDigits: 2, maximumFractionDigits: 2 };
+            
+                let nombre = data.nombre_paquete;
+                let total = data.precio;
+                let numero_max_personas = data.numero_max_personas;
+let totalLegible = total.toLocaleString(undefined, opciones);
+
+                let resultado = `
+                <h4> ${nombre} </h4>
+                <p>Numero maximo de pasajeros:  ${numero_max_personas} </p>
+                <h2> Q ${totalLegible} </h2>`;
+
+                return resultado
+                /*
+                let resultado = `
+
+                    Q${precio.toFixed(2)}
+                
+                `;
+                return resultado; // Retornar solo el valor del campo 'precio'
+                */
+        } else {
+            throw new Error("Error al obtener los datos del paquete. Por favor, inténtalo nuevamente.");
         }
     } catch (error) {
         console.error(error);

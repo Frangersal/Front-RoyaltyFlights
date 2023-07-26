@@ -76,8 +76,8 @@
             -->
             <form>
                 <section class="row">
-                    <div class="col-2  "></div>
-                    <div class="col-8  row">
+                    <div class="col-md-2 col-sm-1    "></div>
+                    <div class="col-md-8 col-sm-10 row">
                         <div class="col-12 box-form-p1">
                             <nav>
                                 <!-- Nav tabs -->
@@ -100,6 +100,16 @@
                                     aria-labelledby="nav-home-tab">
                                     <div class="col-12 bg-marino box-form-p1">
                                         <div class="row">
+                                            <div class="col-md-2">
+                                                <img class="ticket-logo" src="./src/assets/images/Logo-RoyaltyFlights-Blanco.png" alt="">
+                                            </div>
+                                            <div class="col-md-5 " id="info">
+                                                <div id="info-nombre">
+                                                    <u><h5>Seleccione un tipo de viaje</h5></u>
+                                                    
+                                                </div>
+                                                <div id="info-precio"></div>
+                                            </div>
                                             <div class="form-group  col-sm-12 col-md-5">
                                                 <label for="tipoViaje">Tipo de viaje:</label>
                                                 <select class="form-control" id="tipoViaje" required>
@@ -109,18 +119,25 @@
                                                     <option value="3">Paquete Royalty Deluxe</option>
                                                 </select>
                                             </div>
-                                            <div class="form-group col-2">
-                                            </div>
 
                                         </div>
                                         <div id="inputs-container">
 
                                         </div>
-                                        <div class="center">
-                                            <button type="button" class="btn btn-dark btn-masPasajero btn-lg btn-block"
+                                        <div class="disclaimer">
+                                            <p> 
+                                                *Si el pasajero es menor de edad escriba el DPI del adulto responsable.
+                                            </p>
+                                            <p> 
+                                                *Llene todos los campos
+                                            </p>
+
+                                        </div>
+                                        <div class="center row">
+                                            <button type="button" class=" col-md-6 col-sm-12 btn btn-dark btn-masPasajero btn-lg btn-block"
                                                 onclick="agregarPasajero()">Agregar pasajero</button>
                                             <button type="button"
-                                                class="btn btn-danger btn-quitarPasajero btn-lg btn-block"
+                                                class="col-md-6 col-sm-12 btn btn-danger btn-quitarPasajero btn-lg btn-block"
                                                 onclick="quitarPasajero()">Quitar pasajero</button>
                                         </div>
 
@@ -130,7 +147,16 @@
                                     aria-labelledby="nav-profile-tab">
                                     <section class="row">
                                         <div class="col-12  box-fecha-hora row">
-                                            <div class="col-6   center">
+                                            <div class="col-12 row">
+                                                <div class="col-md-6 col-sm-12 center">
+                                                    <img class="ticket-logo" src="./src/assets/images/Logo-RoyaltyFlights-Blanco.png" alt="">
+                                                </div>
+                                                <div class="col-md-6 col-sm-12 center">
+                                                    <h5>Fecha y hora</h5>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-6  col-sm-12 center">
                                                 <div class="calendar">
                                                     <div class="date-picker">
                                                         <input type="date" id="selected-date" readonly />
@@ -158,7 +184,7 @@
                                                     </table>
                                                 </div>
                                             </div>
-                                            <div class="col-6   center">
+                                            <div class="col-md-6   col-sm-12  center">
                                                 <!-- Aquí va el código de la hora -->
                                                 <select class="form-select select-hora" multiple
                                                     aria-label="multiple select example">
@@ -180,6 +206,13 @@
                                                     <option class="option-hora" value="23:00:00">11:00 PM</option>
                                                 </select>
                                             </div> 
+                                            <div class=" center disclaimer">
+                                                <p> 
+                                                    *Seleccione fecha y hora para pasar a la siguiente pestaña
+                                                </p> 
+    
+                                            </div>
+                                        </div> 
                                     </section>
                                 </div>
 
@@ -249,7 +282,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-2 "></div>
+                    <div class="col-md-2 col-sm-1 "></div>
                 </section>
             </form>
 
