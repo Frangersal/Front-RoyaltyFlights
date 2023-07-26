@@ -420,6 +420,7 @@ async function enviarDatosPasajeros(pasajeros) {
         if (response.ok) {
             const data = await response.json();
             console.log("Respuesta del servidor:", data); // Mostrar la respuesta del servidor en la consola
+            localStorage.setItem('sessionPedidosId', data.sessionPedidosId);
             window.location.href = data.urlPago;
             //return data; // Puedes procesar la respuesta del servidor si es necesario
         } else {
