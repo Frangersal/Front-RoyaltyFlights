@@ -173,10 +173,12 @@ if (pasajerosMostrados === 1) {
     btnQuitarPasajero.disabled = false;
 }
 
-
+let contadorPasajerosResumen = 1;
+   
 function agregarPasajero() {
     if (cantidadPasajeros < limitePasajeros) {
         cantidadPasajeros++;
+        contadorPasajerosResumen++
         mostrarInputs();
         pasajerosMostrados++;
         console.log(pasajerosMostrados);
@@ -190,6 +192,7 @@ function agregarPasajero() {
 function quitarPasajero() {
     if (cantidadPasajeros > 1) {
         cantidadPasajeros--;
+        contadorPasajerosResumen--
         mostrarInputs();
         pasajerosMostrados--;
         console.log(pasajerosMostrados);
@@ -417,7 +420,8 @@ async function enviarDatosPasajeros(pasajeros) {
         if (response.ok) {
             const data = await response.json();
             console.log("Respuesta del servidor:", data); // Mostrar la respuesta del servidor en la consola
-            return data; // Puedes procesar la respuesta del servidor si es necesario
+            window.location.href = data.urlPago;
+            //return data; // Puedes procesar la respuesta del servidor si es necesario
         } else {
             throw new Error("Error al enviar los datos de los pasajeros. Por favor, inténtalo nuevamente.");
         }
@@ -499,7 +503,8 @@ async function APIhtmlTotal(tipoViaje) {
             const data = await response.json();
             if (data.hasOwnProperty('precio')) {
                 const precio = data.precio;
-                let resultado = `Q${precio}`;
+                let opciones = { style: 'decimal', useGrouping: true, minimumFractionDigits: 2, maximumFractionDigits: 2 };
+                let resultado = `Q${precio.toFixed(2).toLocaleString(undefined, opciones)}`;
                 return resultado; // Retornar solo el valor del campo 'precio'
             } else {
                 throw new Error("El JSON obtenido no contiene el campo 'precio'.");
@@ -558,8 +563,7 @@ function clicEnNavResumen() {
 // Agregar el listener de clic al elemento
 navResumenTab.addEventListener('click', async function () {
     
-    let contadorPasajeros = 0;
-    
+ 
     let id_paquete = parseInt(document.getElementById("tipoViaje").value);
     let selectedDate = document.getElementById("selected-date").value;
     let selectedHours = Array.from(document.querySelectorAll(".option-hora:checked")).map(option => option.value);
@@ -575,8 +579,7 @@ navResumenTab.addEventListener('click', async function () {
     // Generar nombres 
     function guardarDatosSiExiste(inputId) {
         let inputElement = document.getElementById(inputId);
-        if (inputElement) {
-            contadorPasajeros++;
+        if (inputElement) { 
             return inputElement.value;
         } 
         return null;
@@ -598,17 +601,32 @@ navResumenTab.addEventListener('click', async function () {
     ticketNombre3.textContent = nombre3;
     ticketNombre4.textContent = nombre4;
 
+
+
     // Generar Subtotal
+    const vacio  = '';
+    let ticketSubtotal1 = document.getElementById('ticket-subtotal1');
+    let ticketSubtotal2 = document.getElementById('ticket-subtotal2');
+    let ticketSubtotal3 = document.getElementById('ticket-subtotal3');
+    let ticketSubtotal4 = document.getElementById('ticket-subtotal4');
+
+    ticketSubtotal1.textContent = vacio;
+    ticketSubtotal2.textContent = vacio;
+    ticketSubtotal3.textContent = vacio;
+    ticketSubtotal4.textContent = vacio;
+
     try {
-        let calcularSubtotal = await APIhtmlSubtotal(id_paquete, contadorPasajeros);
+        let calcularSubtotal = await APIhtmlSubtotal(id_paquete, contadorPasajerosResumen);
 
         // Recorremos el array de subtotales y los mostramos en los elementos HTML correspondientes
-        for (let i = 1; i <= contadorPasajeros; i++) {
+        for (let i = 1; i <= contadorPasajerosResumen; i++) {
             let subtotal = calcularSubtotal;
             let ticketSubtotalElement = document.getElementById(`ticket-subtotal${i}`);
             ticketSubtotalElement.textContent = '';
             ticketSubtotalElement.textContent = subtotal;
-            console.log("i-"+i)
+            
+            console.log("contadorPasajerosResumen -"+contadorPasajerosResumen)
+            console.log("subtotal i-"+i)
         }
     } catch (error) {
         console.error("Error al obtener los subtotales:", error);
