@@ -107,7 +107,7 @@ p{
     color: #fff;
     text-shadow: 3px 3px var(--a-marino);
     letter-spacing: 5px;
-    margin-bottom: 2rem;
+    margin-bottom: 0rem;
 }
 @media (max-width: 620px) {
     .h1-sobrevuela{
@@ -153,10 +153,10 @@ p{
     margin-left: 4rem;
     margin-right: 4rem;
 }
-.bg-RoyaltyFlights-index{
+.bg-FranksFlights-index{
     /*background-image: url('../assets/images/BG-RF.png');
     background-image: url('../assets/images/BG-VPG.png');*/
-    background-image: url('../assets/images/BG-ROYALTYFLIGHTS.png');
+    background-image: url('../assets/images/bg-franksflights.png');
     background-size:auto    ;
     background-repeat: no-repeat;
     /* min-height: 675px; */
@@ -166,13 +166,13 @@ p{
 
 }
 @media (max-width: 1000px) {
-    .bg-RoyaltyFlights-index{ 
+    .bg-FranksFlights-index{ 
        background-position: left; 
     
     }
 }
 
-.bg-RoyaltyFlights-service{
+.bg-FranksFlights-service{
     background-image: url('../assets/images/BG-Serv.png');
     background-size: cover;
     background-repeat: no-repeat;
@@ -261,9 +261,9 @@ p{
     width: 180px;
     font-size: 16px;
     border-radius: 15px!important;
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
     background-color: black;
-padding: 0%;
+    padding: 0%;
     margin-left: 4.0rem;
     border: black 1px solid;
 }
@@ -325,6 +325,7 @@ padding: 0%;
     min-height: 150px; 
     width: 90%;
     border-radius: 23px;
+    margin-top: 1rem;
     margin-bottom: 6rem;
 }
 .nav-flights-box_select-box{
