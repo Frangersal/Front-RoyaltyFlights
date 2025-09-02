@@ -1,0 +1,642 @@
+/*
+arial
+neometric
+parangon
+
+colores
+celeste 3f93e8
+marino 092054
+*/
+:root {
+    /*
+    --a-celeste: #3f93e8;  */
+    --a-celeste: #46a1f0;
+    --a-marino: #092054;
+}
+
+@import url('https://fonts.cdnfonts.com/css/neometric-2');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500&display=swap');
+
+@font-face {
+    font-family: neometric-600;
+    src: url(https://fonts.cdnfonts.com/css/neometric-2?styles=26743);
+}
+
+/*                      
+@font-face {
+    font-family: neometric;
+    src: url(/src/assets/fonts/Fontspring-DEMO-neometricalt-extrabold.otf);
+}
+@font-face {
+    font-family: neometric-md;
+    src: url(/src/assets/fonts/Fontspring-DEMO-neometric-medium.otf);
+}
+
+@font-face {
+    font-family: neometric-sm;
+    src: url(/src/assets/fonts/Fontspring-DEMO-neometric-regular.otf);
+}   
+*/
+html {
+
+    background-color: #0d1f44;
+}
+
+footer {
+    background-color: #fff;
+}
+
+h1 {
+    font-family: 'Neometric Alt', sans-serif;
+    color: #000;
+    font-weight: bold;
+}
+
+label {
+    font-family: 'Neometric Alt', sans-serif;
+    color: #000;
+}
+
+input {
+    font-family: 'Neometric Alt', sans-serif;
+    color: #000;
+}
+
+h2 {
+    color: #000;
+    font-size: 16px;
+    font-weight: bold;
+
+
+}
+
+h5 {
+    font-family: 'Neometric Alt', sans-serif;
+
+    color: #000;
+}
+
+p {
+    color: #000;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.neo-sm {
+    /*    font-family: neometric-sm; */
+    font-family: 'Neometric Alt', sans-serif;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.center-top {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.main-RF {
+    padding-top: 7rem;
+}
+
+.img-logo-grande {
+    position: absolute;
+    top: 8rem;
+    left: 5%; /* igual separación lateral que .nav-flights-box-son (width:90% -> 5% de margen) */
+    height: 250px;
+}
+
+@media (max-width: 1010px) {
+    .img-logo-grande {
+        height: 0px;
+    }
+}
+
+.h1-sobrevuela {
+    width: 100%;
+    font-size: 65px;
+    background-color: rgba(160, 81, 45, 0);
+    font-family: 'Outfit', sans-serif;
+    color: #fff;
+    text-shadow: 3px 3px var(--a-marino);
+    letter-spacing: 5px;
+    margin-bottom: 0rem;
+}
+
+@media (max-width: 620px) {
+    .h1-sobrevuela {
+        width: 100%;
+        font-size: 40px;
+        background-color: rgba(160, 81, 45, 0);
+        font-family: 'Outfit', sans-serif;
+        color: #fff;
+        text-shadow: 3px 3px var(--a-marino);
+        letter-spacing: 1px;
+        margin-bottom: 2rem;
+    }
+}
+
+.h2-reserva {
+    margin-top: 1rem;
+    width: 100%;
+    font-size: 35px;
+    background-color: rgba(207, 66, 0, 0);
+    font-family: 'Outfit', sans-serif;
+    color: var(--a-celeste);
+    text-shadow: 2px 2px var(--a-marino);
+    letter-spacing: 2px;
+
+}
+
+.box-h3-telefono {
+    width: 100%;
+
+}
+
+.h3-telefono {
+    width: 300px;
+    height: 50px;
+    border: #46a1f09d solid 8px;
+    border-radius: 50rem;
+    font-size: 20px;
+    background-color: #091f549f;
+    font-family: 'Outfit', sans-serif;
+    color: #fff;
+
+    letter-spacing: 2px;
+
+
+}
+
+.margenes-lados {
+    margin-left: 4rem;
+    margin-right: 4rem;
+}
+
+.bg-FranksFlights-index {
+    /*background-image: url('../images/BG-RF.png');
+    background-image: url('../images/BG-VPG.png');*/
+    background-image: url('../images/bg-franksflights.png');
+    background-size: auto;
+    background-repeat: no-repeat;
+    /* min-height: 675px; */
+    /* background-position: top center; */
+    background-position: right;
+    /*width: 100%;*/
+
+}
+
+@media (max-width: 1000px) {
+    .bg-FranksFlights-index {
+        background-position: left;
+
+    }
+}
+
+.bg-FranksFlights-service {
+    background-image: url('../images/BG-Serv.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 675px;
+
+}
+
+.bg-blog {
+    background-color: #e2e6e9;
+
+}
+
+.nuestros-servicios {
+    min-height: 675px;
+}
+
+.bg-mapa {
+    min-height: 675px;
+    background-color: #fff;
+}
+
+.titulo-1_h1 {
+    margin-top: 5.9rem;
+    padding-left: 4.0rem;
+    /*font-family: Arial, Helvetica, sans-serif;*/
+    font-size: 35px;
+    font-weight: bold;
+    min-height: 40px;
+    font-family: 'Neometric Alt', sans-serif;
+
+}
+
+.titulo-1_h3 {
+
+    margin-top: 18vh;
+    padding-left: 4.0rem;
+    /*font-family: Arial, Helvetica, sans-serif;*/
+    font-size: 25px;
+    font-weight: bold;
+
+    background-color: rgba(255, 255, 255, 0);
+    /* Color de fondo transparente */
+    backdrop-filter: blur(2px);
+    /* Valor de desenfoque */
+
+    width: 50%;
+    font-family: 'Neometric Alt', sans-serif;
+    color: #000;
+
+}
+
+.titulo-1_h2 {
+    /*font-family: Arial, Helvetica, sans-serif;*/
+    font-size: 35px;
+    font-weight: bold;
+
+    background-color: rgba(255, 255, 255, 0);
+    /* Color de fondo transparente */
+    backdrop-filter: blur(2px);
+    /* Valor de desenfoque */
+    padding-left: 4.0rem;
+    color: #000;
+    width: 60%;
+    font-family: 'Neometric Alt', sans-serif;
+}
+
+.subtexto {
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0);
+    /* Color de fondo transparente */
+    backdrop-filter: blur(5px);
+    /* Valor de desenfoque */
+    padding-left: 4.0rem;
+    color: #cccc;
+    width: 50%;
+    font-family: arial;
+}
+
+@media (max-width: 645px) {
+    .titulo-1_h3 {
+        margin-top: 1vh;
+        width: 100%;
+    }
+
+    .titulo-1_h2 {
+        width: 100%;
+    }
+
+    .subtexto {
+        width: 100%;
+    }
+
+    /* Otros estilos... */
+}
+
+.subtexto-blog {
+    padding-left: 4.0rem;
+}
+
+.btn-RF {
+    font-family: 'Neometric Alt', sans-serif, neometric-md;
+    height: 55px;
+    width: 180px;
+    font-size: 16px;
+    letter-spacing: 0.06em; /* separar ligeramente las letras */
+    border-radius: 15px !important;
+    /* margin-bottom: 1rem; */
+    background-color: black;
+    padding: 0%;
+    margin-left: 5%; /* alinear con .nav-flights-box-son */
+    border: black 1px solid;
+}
+
+.btn-RF-contacto {
+    margin-bottom: 1rem;
+    background-color: black;
+}
+
+.card-header-ff {
+    background-color: var(--a-celeste);
+    border-radius: 1rem 1rem 0rem 0rem   !important;
+}
+.nav-link-ff-off{
+    color: white !important;
+}
+.nav-tabs .nav-link {
+    border-top-left-radius: 1rem!important;
+    border-top-right-radius: 1rem!important;
+}
+
+.card-ff{
+    border: 0px !important;
+    border-radius: 2rem !important;
+}
+
+.bar-item {
+    position: relative;
+    padding: 0.3rem;
+    overflow: hidden;
+}
+
+.bar-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #091f5400;
+    z-index: -1;
+    /* Colocamos el pseudo-elemento detrás del contenido */
+}
+
+@media (max-width: 620px) {
+    .bar-item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(9, 31, 84, 0.747);
+        backdrop-filter: blur(10px);
+        z-index: -1;
+        /* Colocamos el pseudo-elemento detrás del contenido */
+    }
+}
+
+.bar-link {
+    position: relative;
+    /* Aseguramos que el texto se muestre encima del pseudo-elemento */
+    color: white;
+    /* Ajusta el color del texto según tus preferencias */
+    text-shadow: 2px 2px 5px #092054, -2px -2px 5px #092054, -2px 2px 5px #092054, 2px -2px 5px #092054;
+    /*font-weight: bold;
+    padding-right: 0!important;*/
+}
+
+.nav-flights-box {
+    background-color: rgba(161, 54, 54, 0);
+    min-height: 150px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.nav-flights-box-son {
+    background-color: #ffffff;
+    min-height: 150px;
+    width: 90%;
+    border-radius: 23px;
+    margin-top: 3rem;
+    margin-bottom: 6rem;
+}
+
+.nav-flights-box_select-box {
+    background-color: rgba(255, 0, 221, 0);
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+
+.nav-flights-box_select {
+    background-color: rgba(0, 0, 255, 0);
+    width: auto;
+    min-height: 50px;
+    border-radius: 10px;
+    margin: 0 0.5rem 0 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+/* Estilo para la flecha entre Origen y Destino */
+.arrow-col {
+    padding: 0 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.arrow-icon {
+    font-size: 1.25rem;
+    color: #0d1f44;
+    background: #f1f5f9;
+    padding: 0.5rem;
+    border-radius: 999px;
+    box-shadow: 0 4px 10px rgba(9,31,68,0.06);
+}
+
+@media (max-width: 576px) {
+    .arrow-col { display: none; }
+}
+
+.bootom-nav-flights-box_search {
+    background-color: rgba(255, 255, 255, 0);
+    height: auto;
+    display: flex;
+    padding-left: 0%;
+    padding-right: 0%;
+
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+
+.bootom-nav-flights-box_search-section {
+    background-color: var(--a-celeste);
+    height: 50px;
+    min-width: 150px;
+    border-left: solid #fff 0.5px;
+
+}
+
+.search-section_destino {
+    width: 16%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-section_destino_select {
+    width: 30%;
+}
+
+.search-section_piramide {
+
+    width: 40%;
+}
+
+.search-section_fecha {
+
+    width: 35%;
+}
+
+.search-section_buttom {
+    background-color: black;
+    width: 4% !important;
+    min-width: 50px;
+
+}
+
+@media (max-width: 620px) {
+
+
+    .search-section_destino {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .search-section_destino_select {
+        width: 100%;
+    }
+
+    .search-section_piramide {
+
+        width: 100%;
+    }
+
+    .search-section_fecha {
+
+        width: 100%;
+    }
+
+    .search-section_buttom {
+        background-color: black;
+        width: 100% !important;
+
+    }
+
+}
+
+.icono-search {
+    fill: aqua !important;
+}
+
+.icon-service {
+    padding: 0.5rem;
+    border: solid 2px black;
+    border-radius: 100px;
+    height: 40px;
+    width: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+    top: -0.8rem;
+    left: 0rem;
+}
+
+#myNavbar {
+    /*background-color: #e3f2fd09;
+    position: relative;*/
+    z-index: 2;
+    /* Valor alto para asegurarse de que la barra de navegación esté en frente */
+}
+
+main {
+    position: absolute;
+    top: 0px;
+    z-index: 1;
+    /* Valor menor para que el contenido esté detrás de la barra de navegación */
+}
+
+
+.select-RF {
+    background-color: rgb(255, 255, 255);
+    border: 0px;
+    /*border-right: solid 1px rgb(212, 211, 211);*/
+    width: 110px;
+    height: 25px;
+    /*font-family: neometric-sm;*/
+    font-family: 'Neometric Alt', sans-serif;
+    font-size: 14px;
+}
+
+span {
+    font-family: 'Neometric Alt', sans-serif;
+    font-size: 14px;
+}
+
+textarea {
+    resize: none;
+}
+
+.form-control {
+    width: 100%;
+}
+
+.form-group {
+    display: inline;
+}
+
+.form-group_icon {}
+
+.parrafo {
+    margin-top: none !important;
+}
+
+.fixed-top {
+    /*
+    background: rgb(13,31,68);
+    background: linear-gradient(180deg, rgba(13,31,68,1) 0%, rgba(0,212,255,0) 88%); */
+}
+
+
+
+.navbar {
+    background-color: rgba(13, 31, 68, 0.74); /* azul marino más opaco */
+    backdrop-filter: blur(12px); /* efecto blur */
+    -webkit-backdrop-filter: blur(12px); /* soporte Safari */
+    transition: background-color 0.5s ease;
+    border-bottom: 1px solid rgba(30, 60, 112, 0.192);
+
+    box-shadow: 0 6px 18px rgba(9, 31, 68, 0.39); /* sombra ligera y sutil */
+    /* Borde degradado y sombra sutil */
+}
+
+.navbar.scrolled {
+    background-color: rgba(0, 128, 0, 0);
+}
+
+.yellow-section {
+    /*
+    background-color: rgba(255, 255, 0, 0.507);
+    margin-bottom: 1rem;*/
+}
+
+.img-nav {
+    width: 40px;
+}
+
+.img-nav-lg {
+    width: 80px;
+}
+
+/* Date input placeholder overlay */
+.date-input-wrapper { position: relative; margin-top: 0.4rem; }
+.date-input-wrapper .date-placeholder {
+    position: absolute;
+    left: 12px;
+    top: -10px; /* place above the input to avoid native hint overlap */
+    transform: none;
+    pointer-events: none;
+    color: rgba(13,31,68,0.8);
+    font-size: 0.85rem;
+    background: #fff;
+    padding: 0 8px;
+    border-radius: 6px;
+}
+.date-input-wrapper .date-input {
+    /* ensure there's space visually for the floating label */
+    padding-top: 0.6rem;
+}
