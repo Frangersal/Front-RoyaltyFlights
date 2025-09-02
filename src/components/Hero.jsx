@@ -1,8 +1,9 @@
 import React from 'react'
+import '../assets/styles/Hero.css'
 
-import logoSrc from '../assets/images/franksflights-grologo-darkmode.png'
+import logoSrc from '../assets/images/franksflights-logo-darkmode.png'
 
-export default function Hero({ logoSrc }) {
+export default function Hero() {
     return (
         <section className="bg-FranksFlights-index  yellow-section row">
             <div className="col-12 main-RF">

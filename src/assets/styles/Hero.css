@@ -1,0 +1,97 @@
+/* Styles exclusivos del Hero */
+.bg-FranksFlights-index {
+    
+    background-color: #0d1f44;
+    background-image: url('../images/bg-franksflights.png');
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: right;
+
+}
+
+@media (max-width: 1000px) {
+    .bg-FranksFlights-index {
+        background-position: left;
+
+    }
+}
+
+
+.main-RF { 
+    padding-top: 7rem; }
+
+.img-logo-grande {
+    position: absolute;
+    top: 8rem;
+    left: 5%;
+    height: 250px;
+}
+
+@media (max-width: 1010px) {
+    .img-logo-grande { height: 0px; }
+}
+
+.h1-sobrevuela {
+    width: 100%;
+    font-size: 65px;
+    background-color: rgba(160, 81, 45, 0);
+    font-family: 'Outfit', sans-serif;
+    color: #fff;
+    text-shadow: 3px 3px var(--a-marino);
+    letter-spacing: 5px;
+    margin-bottom: 0rem;
+}
+
+@media (max-width: 620px) {
+    .h1-sobrevuela { font-size: 40px; letter-spacing: 1px; margin-bottom: 2rem; }
+}
+
+.h2-reserva {
+    margin-top: 1rem;
+    width: 100%;
+    font-size: 35px;
+    font-family: 'Outfit', sans-serif;
+    color: var(--a-celeste);
+    text-shadow: 2px 2px var(--a-marino);
+    letter-spacing: 2px;
+}
+
+.box-h3-telefono { width: 100%; }
+.h3-telefono {
+    width: 300px;
+    height: 50px;
+    border: #46a1f09d solid 8px;
+    border-radius: 50rem;
+    font-size: 20px;
+    background-color: #091f549f;
+    color: #fff;
+    letter-spacing: 2px;
+}
+
+.nav-flights-box { display: flex; justify-content: center; align-items: center; width: 100%; }
+.nav-flights-box-son {
+    background-color: #ffffff;
+    min-height: 150px;
+    width: 90%;
+    border-radius: 23px;
+    margin-top: 3rem;
+    margin-bottom: 6rem;
+}
+
+.card-ff { border: 0px !important; border-radius: 2rem !important; }
+.card-header-ff { background-color: var(--a-celeste); border-radius: 1rem 1rem 0 0 !important; }
+.nav-link-ff-off { color: white !important; }
+
+.arrow-col { padding: 0 0.5rem; display:flex; align-items:center; justify-content:center; }
+.arrow-icon { font-size:1.25rem; color:#0d1f44; background:#f1f5f9; padding:0.5rem; border-radius:999px; box-shadow:0 4px 10px rgba(9,31,68,0.06); }
+
+.date-input-wrapper { position: relative; margin-top: 0.4rem; }
+.date-input-wrapper .date-placeholder { position: absolute; left: 12px; top: -10px; pointer-events: none; color: rgba(13,31,68,0.8); font-size: 0.85rem; background: #fff; padding: 0 8px; border-radius: 6px; }
+.date-input-wrapper .date-input { padding-top: 0.6rem; }
+
+
+
+.nav-tabs .nav-link{
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}

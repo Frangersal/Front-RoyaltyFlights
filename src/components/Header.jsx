@@ -1,4 +1,5 @@
 import React from 'react'
+import '../assets/styles/Header.css'
 
 import logoSrc from '../assets/images/franksflights-grologo-darkmode.png'
 
@@ -35,6 +36,16 @@ export default function Header() {
                         </li>
                         <li className="nav-item bar-item center">
                             <a className="nav-link bar-link" href="#contacto">Contacto</a>
+                        </li>
+                    </ul>
+                    <ul className="navbar-nav ms-auto d-flex align-items-center" style={{ marginRight: '4rem' }}>
+                        <li className="nav-item">
+                            <a className="nav-link bar-link" href="#">Registrarse</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="#">
+                                <button type="button" className="btn btn-light btn-sm">Iniciar sesión</button>
+                            </a>
                         </li>
                     </ul>
                 </div>

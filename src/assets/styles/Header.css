@@ -1,0 +1,58 @@
+/* Styles exclusivos del Header */
+#myNavbar {
+    /*background-color: #e3f2fd09;
+    position: relative;*/
+    z-index: 2;
+}
+
+.navbar {
+    background-color: rgba(13, 31, 68, 0.74); /* azul marino más opaco */
+    backdrop-filter: blur(12px); /* efecto blur */
+    -webkit-backdrop-filter: blur(12px); /* soporte Safari */
+    transition: background-color 0.5s ease;
+    border-bottom: 1px solid rgba(30, 60, 112, 0.192);
+    box-shadow: 0 6px 18px rgba(9, 31, 68, 0.39);
+}
+
+.navbar.scrolled {
+    background-color: rgba(0, 128, 0, 0);
+}
+
+.img-nav { width: 40px; }
+.img-nav-lg { width: 80px; }
+
+.bar-item {
+    position: relative;
+    padding: 0.3rem;
+    overflow: hidden;
+}
+.bar-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #091f5400;
+    z-index: -1;
+}
+
+@media (max-width: 620px) {
+    .bar-item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(9, 31, 84, 0.747);
+        backdrop-filter: blur(10px);
+        z-index: -1;
+    }
+}
+
+.bar-link {
+    position: relative;
+    color: white;
+    text-shadow: 2px 2px 5px #092054, -2px -2px 5px #092054, -2px 2px 5px #092054, 2px -2px 5px #092054;
+}

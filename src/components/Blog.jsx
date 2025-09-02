@@ -1,4 +1,5 @@
 import React from 'react'
+import '../assets/styles/Blog.css'
 import cardImage from '../assets/images/computadora.webp'
 
 export default function Blog() {
