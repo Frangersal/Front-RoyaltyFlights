@@ -20,12 +20,14 @@ export default function Hero() {
     // - Selecciona el ref objetivo: `salidaRef` o `regresoRef` según `which`.
     // - Intenta usar la API moderna `showPicker()` si está disponible (mejor experiencia móvil/desktop).
     // - Si showPicker no existe o falla, aplica un fallback que hace focus y simula un click en el input.
-    const salidaRef = useRef(null)
-    const regresoRef = useRef(null)
+    const salidaDateRef = useRef(null)
+    const salidaTimeRef = useRef(null)
+    const regresoDateRef = useRef(null)
+    const regresoTimeRef = useRef(null)
     const openDatePicker = (which) => (e) => {
         // evitar el comportamiento por defecto del enlace
         if (e && e.preventDefault) e.preventDefault()
-        const ref = which === 'salida' ? salidaRef : regresoRef
+        const ref = which === 'salida' ? salidaDateRef : regresoDateRef
         if (ref && ref.current) {
             try {
                 if (typeof ref.current.showPicker === 'function') {
@@ -38,21 +40,42 @@ export default function Hero() {
             try { ref.current.click() } catch (e) { /* ignorar */ }
         }
     }
+    // Abrir selector específico para inputs de tiempo (usa showPicker() cuando esté disponible).
+    const openTimePicker = (ref) => (e) => {
+        if (e && e.stopPropagation) e.stopPropagation()
+        if (ref && ref.current) {
+            try {
+                if (typeof ref.current.showPicker === 'function') {
+                    ref.current.showPicker()
+                    return
+                }
+            } catch (err) {
+                // ignorar
+            }
+            ref.current.focus()
+            try { ref.current.click() } catch (err) { /* ignorar */ }
+        }
+    }
     const isSencillo = tab === 'sencillo'
     const arrowNode = !isSencillo ? (
         <div className="col-auto arrow-col d-flex justify-content-center">
             <i className="fa-solid fa-arrow-right arrow-icon" aria-hidden="true"></i>
         </div>
     ) : null
-    // Fecha por defecto para salida: hoy (YYYY-MM-DD)
-    const todayStr = (() => {
-        const d = new Date()
-        const y = d.getFullYear()
-        const m = String(d.getMonth() + 1).padStart(2, '0')
-        const day = String(d.getDate()).padStart(2, '0')
-        return `${y}-${m}-${day}`
-    })()
-    const [salidaDate, setSalidaDate] = useState(todayStr)
+    // Fecha/hora por defecto: ahora (datetime-local). Usamos un solo input por campo.
+    const formatDateTimeLocal = (d) => {
+        const yy = d.getFullYear()
+        const mm = String(d.getMonth() + 1).padStart(2, '0')
+        const dd = String(d.getDate()).padStart(2, '0')
+        const hh = String(d.getHours()).padStart(2, '0')
+        const min = String(d.getMinutes()).padStart(2, '0')
+        return `${yy}-${mm}-${dd}T${hh}:${min}`
+    }
+
+    const now = new Date()
+    now.setSeconds(0, 0)
+    const defaultSalidaDateTime = formatDateTimeLocal(now)
+    const [salidaDateTime, setSalidaDateTime] = useState(defaultSalidaDateTime)
 
     // Helper: sumar días a una fecha ISO (YYYY-MM-DD)
     const addDaysISO = (iso, days) => {
@@ -65,16 +88,160 @@ export default function Hero() {
         return `${yy}-${mm}-${dd}`
     }
 
-    const [regresoDate, setRegresoDate] = useState(addDaysISO(todayStr, 1))
+    // Añade días a un ISO datetime-local (YYYY-MM-DDTHH:MM) y devuelve formato datetime-local
+    const addDaysDateTime = (isoDateTime, days) => {
+        const dt = new Date(isoDateTime)
+        dt.setDate(dt.getDate() + days)
+        return formatDateTimeLocal(dt)
+    }
+
+    // Normaliza una hora 'HH:MM' a la media hora más cercana (00 o 30 minutos).
+    // Si la entrada está vacía o no válida devuelve cadena vacía.
+    const snapToHalfHour = (timeStr) => {
+        if (!timeStr) return ''
+        const parts = timeStr.split(':')
+        if (parts.length < 2) return ''
+        let hh = parseInt(parts[0], 10)
+        let mm = parseInt(parts[1], 10)
+        if (Number.isNaN(hh) || Number.isNaN(mm)) return ''
+        // Redondear a 00/30
+        if (mm < 15) mm = 0
+        else if (mm < 45) mm = 30
+        else { mm = 0; hh = (hh + 1) % 24 }
+        const HH = String(hh).padStart(2, '0')
+        const MM = String(mm).padStart(2, '0')
+        return `${HH}:${MM}`
+    }
+
+    // Helpers para separar y componer hora 'HH:MM'
+    const splitTime = (timeStr) => {
+        if (!timeStr) return ['', '']
+        const parts = timeStr.split(':')
+        return [parts[0] || '', parts[1] || '']
+    }
+    const buildTime = (hh, mm) => {
+        if (hh === '' || mm === '') return ''
+        return `${String(hh).padStart(2, '0')}:${String(mm).padStart(2, '0')}`
+    }
+
+    const [regresoDateTime, setRegresoDateTime] = useState(formatDateTimeLocal(new Date(now.getTime() + 24 * 60 * 60 * 1000)))
+    // Mensajes informativos temporales (por ejemplo, cuando redondeamos minutos)
+    const [infoMessage, setInfoMessage] = useState('')
+    const infoTimerRef = useRef(null)
+
+    const showInfo = (msg, ms = 7000) => {
+        if (infoTimerRef.current) clearTimeout(infoTimerRef.current)
+        setInfoMessage(msg)
+        infoTimerRef.current = setTimeout(() => setInfoMessage(''), ms)
+    }
+
+    const closeInfo = () => {
+        if (infoTimerRef.current) { clearTimeout(infoTimerRef.current); infoTimerRef.current = null }
+        setInfoMessage('')
+    }
+
+    // limpiar timer al desmontar
+    useEffect(() => {
+        return () => { if (infoTimerRef.current) clearTimeout(infoTimerRef.current) }
+    }, [])
+
+    // Ajusta un valor datetime-local según la regla solicitada:
+    // - minutos 1..30 => se fijan a 30 (misma hora)
+    // - minutos 31..59 => se fijan a 00 y se avanza a la siguiente hora
+    // - minuto 0 queda como 00 (sin cambio)
+    // Devuelve { rounded, changed }
+    const snapDateTimeToHalfHour = (isoDateTime) => {
+        if (!isoDateTime) return { rounded: isoDateTime, changed: false }
+        const dt = new Date(isoDateTime)
+        if (Number.isNaN(dt.getTime())) return { rounded: isoDateTime, changed: false }
+        const mm = dt.getMinutes()
+        let changed = false
+        if (mm === 0) {
+            // nada que hacer
+        } else if (mm >= 1 && mm <= 30) {
+            if (mm !== 30) { dt.setMinutes(30); changed = true }
+        } else if (mm >= 31 && mm <= 59) {
+            // fijar a 00 y avanzar hora
+            dt.setMinutes(0)
+            dt.setHours((dt.getHours() + 1) % 24)
+            changed = true
+        }
+        dt.setSeconds(0, 0)
+        const rounded = formatDateTimeLocal(dt)
+        return { rounded, changed }
+    }
+
+    // Extrae 'HH:MM' de un datetime-local (YYYY-MM-DDTHH:MM)
+    const timeFromDateTimeLocal = (isoDateTime) => {
+        if (!isoDateTime) return ''
+        // si viene en formato Date.stringify, convertir
+        try {
+            if (isoDateTime.includes && isoDateTime.includes('T')) {
+                return isoDateTime.split('T')[1].slice(0,5)
+            }
+        } catch (err) { }
+        // fallback
+        const dt = new Date(isoDateTime)
+        if (Number.isNaN(dt.getTime())) return ''
+        const hh = String(dt.getHours()).padStart(2, '0')
+        const mm = String(dt.getMinutes()).padStart(2, '0')
+        return `${hh}:${mm}`
+    }
+
+    // Formatea a 12h con am/pm en minúsculas: '4:30 pm'
+    const formatTo12Hour = (isoDateTime) => {
+        if (!isoDateTime) return ''
+        const dt = new Date(isoDateTime)
+        if (Number.isNaN(dt.getTime())) return ''
+        let hh = dt.getHours()
+        const mm = String(dt.getMinutes()).padStart(2, '0')
+        const ampm = hh >= 12 ? 'pm' : 'am'
+        hh = hh % 12
+        if (hh === 0) hh = 12
+        return `${hh}:${mm} ${ampm}`
+    }
 
     // Garantiza que la fecha de regreso sea al menos un día después de la fecha de salida.
     // - Calcula `minRegreso` como `salidaDate + 1 día`.
     // - Si `regresoDate` está vacío o es anterior a `minRegreso`, lo actualiza automáticamente.
     // - Se ejecuta cada vez que `salidaDate` cambia (por eso está en la dependencia).
+    // Garantiza que la fecha/hora de regreso sea al menos un día después de la salida.
     useEffect(() => {
-        const minRegreso = addDaysISO(salidaDate, 1)
-        if (!regresoDate || regresoDate < minRegreso) setRegresoDate(minRegreso)
-    }, [salidaDate])
+        const addDaysDateTime = (isoDateTime, days) => {
+            const dt = new Date(isoDateTime)
+            dt.setDate(dt.getDate() + days)
+            return formatDateTimeLocal(dt)
+        }
+        const minRegreso = addDaysDateTime(salidaDateTime, 1)
+        if (!regresoDateTime || regresoDateTime < minRegreso) setRegresoDateTime(minRegreso)
+    }, [salidaDateTime])
+
+    // Handlers que aplican el redondeo a 00/30 y muestran mensaje cuando ocurre
+    const handleSalidaChange = (e) => {
+        const val = e.target.value
+        const { rounded, changed } = snapDateTimeToHalfHour(val)
+        setSalidaDateTime(rounded)
+        if (changed) {
+            const hhmm = formatTo12Hour(rounded)
+            const node = (
+                <span>La hora se redondeó a <span style={{ textDecoration: 'underline', fontWeight: 700 }}>{hhmm}</span></span>
+            )
+            showInfo(node, 7000)
+        }
+    }
+
+    const handleRegresoChange = (e) => {
+        const val = e.target.value
+        const { rounded, changed } = snapDateTimeToHalfHour(val)
+        setRegresoDateTime(rounded)
+        if (changed) {
+            const hhmm = formatTo12Hour(rounded)
+            const node = (
+                <span>La hora se redondeó a <span style={{ textDecoration: 'underline', fontWeight: 700 }}>{hhmm}</span></span>
+            )
+            showInfo(node, 7000)
+        }
+    }
 
     // Nodo de 'Regreso':
     // - Se renderiza solo cuando no es 'sencillo' (es decir, para viajes redondos).
@@ -84,8 +251,16 @@ export default function Hero() {
     const regresoNode = !isSencillo ? (
         <div className="col">
             <div className="date-input-wrapper" onClick={openDatePicker('regreso')}>
-                <input ref={regresoRef} value={regresoDate} onChange={(e) => setRegresoDate(e.target.value)} type="date" id="regreso" className="form-control date-input"
-                    aria-label="Regreso" min={salidaDate} />
+                <input
+                    ref={regresoDateRef}
+                    value={regresoDateTime}
+                    onChange={handleRegresoChange}
+                    type="datetime-local"
+                    id="regreso"
+                    className="form-control date-input"
+                    aria-label="Regreso"
+                    min={addDaysDateTime(salidaDateTime, 1)}
+                />
                 <span className="date-placeholder">Regreso:</span>
             </div>
         </div>
@@ -183,8 +358,16 @@ export default function Hero() {
                                 <div className="row g-3 align-items-center">
                                     <div className="col">
                                         <div className="date-input-wrapper" onClick={openDatePicker('salida')}>
-                                            <input ref={salidaRef} value={salidaDate} onChange={(e) => setSalidaDate(e.target.value)} type="date" id="salida" className="form-control date-input"
-                                                aria-label="Salida" min={todayStr} />
+                                            <input
+                                                ref={salidaDateRef}
+                                                value={salidaDateTime}
+                                                onChange={handleSalidaChange}
+                                                type="datetime-local"
+                                                id="salida"
+                                                className="form-control date-input"
+                                                aria-label="Salida"
+                                                min={formatDateTimeLocal(new Date())}
+                                            />
                                             <span className="date-placeholder">Salida:</span>
                                         </div>
                                     </div>
@@ -199,9 +382,10 @@ export default function Hero() {
                                             <input type="text" readOnly className="form-control text-center" value={personsLabel} aria-label="Personas" />
                                             <button type="button" className="btn btn-dark" aria-label="Aumentar personas" onClick={incrementPersons} disabled={persons >= PERSONS_MAX}>+</button>
                                         </div>
+                                        {/* mensaje moved to toast container */}
                                     </div>
                                     <div className="col">
-                                        <button type="button" className="btn btn-dark w-100">Buscar</button>
+                                        <button type="button" className="btn btn-dark w-100">Reservar</button>
                                     </div>
                                 </div>
 
@@ -228,6 +412,20 @@ export default function Hero() {
                         </div>
                     </div>
                 )}
+
+                {/* Toast container bottom-right (fuera del card) */}
+                <div aria-live="polite" aria-atomic="true" style={{ position: 'fixed', bottom: 20, right: 20, zIndex: 1060 }}>
+                    {infoMessage && (
+                        <div className="toast show" role="status" style={{ backgroundColor: '#198754', color: '#fff', padding: '0.75rem 1rem', borderRadius: '8px', minWidth: '220px' }}>
+                            <div style={{ position: 'relative' }}>
+                                <button aria-label="Cerrar" onClick={closeInfo} style={{ position: 'absolute', top: -6, right: -6, background: 'transparent', border: 'none', color: '#fff', fontSize: '1.25rem', lineHeight: 1, cursor: 'pointer' }}>×</button>
+                                <div style={{ fontSize: '1.1rem' }}>
+                                    {infoMessage}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
 
             </div>
         </section>

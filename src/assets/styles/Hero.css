@@ -87,7 +87,19 @@
 
 .date-input-wrapper { position: relative; margin-top: 0.4rem; }
 .date-input-wrapper .date-placeholder { position: absolute; left: 12px; top: -10px; pointer-events: none; color: rgba(13,31,68,0.8); font-size: 0.85rem; background: #fff; padding: 0 8px; border-radius: 6px; }
-.date-input-wrapper .date-input { padding-top: 0.6rem; }
+.date-input-wrapper .date-input {
+    /* Centrar la fecha visualmente en el input */
+    padding: 0.5rem 0.75rem;
+    text-align: center;
+}
+
+/* Fallbacks / mejoras para navegadores WebKit (Chrome, Safari) */
+.date-input-wrapper .date-input::-webkit-datetime-edit {
+    text-align: center;
+}
+.date-input-wrapper .date-input::-webkit-datetime-edit-fields-wrapper {
+    display: flex; justify-content: center;
+}
 
 
 
