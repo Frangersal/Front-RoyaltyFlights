@@ -1,0 +1,4 @@
+/* Styles exclusivos de Services */
+.bg-FranksFlights-service { background-image: url('../images/BG-Serv.png'); background-size: cover; background-repeat: no-repeat; min-height: 675px; }
+.nuestros-servicios { min-height: 675px; }
+.icon-service { padding: 0.5rem; border: solid 2px black; border-radius: 100px; height: 40px; width: 40px; display:flex; justify-content:center; align-items:center; position: relative; top: -0.8rem; }

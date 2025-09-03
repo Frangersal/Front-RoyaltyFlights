@@ -1,0 +1,282 @@
+:root {
+    --a-celeste: #46a1f0;
+    --a-marino: #092054;
+}
+
+@import url('https://fonts.cdnfonts.com/css/neometric-2');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500&display=swap');
+
+@font-face {
+    font-family: neometric-600;
+    src: url(https://fonts.cdnfonts.com/css/neometric-2?styles=26743);
+}
+
+html {
+
+    background-color: #0d1f44;
+}
+
+footer {
+    background-color: #fff;
+}
+
+h1 {
+    font-family: 'Neometric Alt', sans-serif;
+    color: #000;
+    font-weight: bold;
+}
+
+label {
+    font-family: 'Neometric Alt', sans-serif;
+    color: #000;
+}
+
+input {
+    font-family: 'Neometric Alt', sans-serif;
+    color: #000;
+}
+
+h2 {
+    color: #000;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+h5 {
+    font-family: 'Neometric Alt', sans-serif;
+    color: #000;
+}
+
+p {
+    color: #000;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.neo-sm {
+    /*    font-family: neometric-sm; */
+    font-family: 'Neometric Alt', sans-serif;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.center-top {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.margenes-lados {
+    margin-left: 4rem;
+    margin-right: 4rem;
+}
+
+.bg-mapa {
+    min-height: 675px;
+    background-color: #fff;
+}
+
+.titulo-1_h3 {
+    margin-top: 18vh;
+    padding-left: 4.0rem;
+    font-size: 25px;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(2px);
+    width: 50%;
+    font-family: 'Neometric Alt', sans-serif;
+    color: #000;
+}
+
+.titulo-1_h2 {
+    font-size: 35px;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(2px);
+    padding-left: 4.0rem;
+    color: #000;
+    width: 60%;
+    font-family: 'Neometric Alt', sans-serif;
+}
+
+.subtexto {
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0);
+    /* Color de fondo transparente */
+    backdrop-filter: blur(5px);
+    /* Valor de desenfoque */
+    padding-left: 4.0rem;
+    color: #cccc;
+    width: 50%;
+    font-family: arial;
+}
+
+@media (max-width: 645px) {
+    .titulo-1_h3 {
+        margin-top: 1vh;
+        width: 100%;
+    }
+
+    .titulo-1_h2 {
+        width: 100%;
+    }
+
+    .subtexto {
+        width: 100%;
+    }
+}
+
+.subtexto-blog {
+    padding-left: 4.0rem;
+}
+
+.btn-RF {
+    font-family: 'Neometric Alt', sans-serif, neometric-md;
+    height: 55px;
+    width: 180px;
+    font-size: 16px;
+    letter-spacing: 0.06em; 
+    border-radius: 15px !important;
+    background-color: black;
+    padding: 0%;
+    margin-left: 5%; 
+    border: black 1px solid;
+}
+
+.btn-RF-contacto {
+    margin-bottom: 1rem;
+    background-color: black;
+}
+
+.nav-flights-box_select-box {
+    background-color: rgba(255, 0, 221, 0);
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.nav-flights-box_select {
+    background-color: rgba(0, 0, 255, 0);
+    width: auto;
+    min-height: 50px;
+    border-radius: 10px;
+    margin: 0 0.5rem 0 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+/* Estilo para la flecha entre Origen y Destino */
+
+@media (max-width: 576px) {
+    .arrow-col { display: none; }
+}
+/* arrow-col responsive moved to Hero.css */
+
+.bootom-nav-flights-box_search {
+    background-color: rgba(255, 255, 255, 0);
+    height: auto;
+    display: flex;
+    padding-left: 0%;
+    padding-right: 0%;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+
+.bootom-nav-flights-box_search-section {
+    background-color: var(--a-celeste);
+    height: 50px;
+    min-width: 150px;
+    border-left: solid #fff 0.5px;
+
+}
+
+.search-section_destino {
+    width: 16%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-section_destino_select {
+    width: 30%;
+}
+
+.search-section_piramide {
+    width: 40%;
+}
+
+.search-section_fecha {
+    width: 35%;
+}
+
+.search-section_buttom {
+    background-color: black;
+    width: 4% !important;
+    min-width: 50px;
+}
+
+@media (max-width: 620px) {
+
+    .search-section_destino {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .search-section_destino_select {
+        width: 100%;
+    }
+
+    .search-section_piramide {
+        width: 100%;
+    }
+
+    .search-section_fecha {
+        width: 100%;
+    }
+
+    .search-section_buttom {
+        background-color: black;
+        width: 100% !important;
+    }
+
+}
+
+.icono-search {
+    fill: aqua !important;
+}
+
+
+
+
+.select-RF {
+    background-color: rgb(255, 255, 255);
+    border: 0px;
+    width: 110px;
+    height: 25px;
+    font-family: 'Neometric Alt', sans-serif;
+    font-size: 14px;
+}
+
+span {
+    font-family: 'Neometric Alt', sans-serif;
+    font-size: 14px;
+}
+
+textarea {
+    resize: none;
+}
+
+.form-control {
+    width: 100%;
+}
+
+.form-group {
+    display: inline;
+}
