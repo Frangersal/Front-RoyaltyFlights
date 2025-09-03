@@ -243,6 +243,61 @@ export default function Hero() {
         }
     }
 
+    // Extrae la fecha 'YYYY-MM-DD' de un datetime-local (o Date string)
+    const dateFromDateTimeLocal = (isoDateTime) => {
+        if (!isoDateTime) return null
+        try {
+            if (typeof isoDateTime === 'string' && isoDateTime.includes('T')) return isoDateTime.split('T')[0]
+        } catch (err) { }
+        const dt = new Date(isoDateTime)
+        if (Number.isNaN(dt.getTime())) return null
+        const yy = dt.getFullYear()
+        const mm = String(dt.getMonth() + 1).padStart(2, '0')
+        const dd = String(dt.getDate()).padStart(2, '0')
+        return `${yy}-${mm}-${dd}`
+    }
+
+    // Maneja el clic en Reservar: construye un objeto con la info y lo guarda en localStorage
+    const handleReservar = () => {
+        // Validación mínima
+        if (!selectedOrigin) { showInfo('Selecciona el origen antes de reservar', 5000); return }
+        if (!selectedDestino) { showInfo('Selecciona el destino antes de reservar', 5000); return }
+
+        const tipo = isSencillo ? 'sencillo' : 'redondo'
+        const fechaSalida = dateFromDateTimeLocal(salidaDateTime)
+        const horaSalida = timeFromDateTimeLocal(salidaDateTime)
+
+        let fechaRegreso = null
+        let horaRegreso = null
+        if (!isSencillo && regresoDateTime) {
+            fechaRegreso = dateFromDateTimeLocal(regresoDateTime)
+            horaRegreso = timeFromDateTimeLocal(regresoDateTime)
+        }
+
+        const reserva = {
+            tipo,
+            origen: selectedOrigin,
+            destino: selectedDestino,
+            fechaSalida, // YYYY-MM-DD
+            horaSalida,   // HH:MM
+            fechaRegreso, // null si no aplica
+            horaRegreso,  // null si no aplica
+            personas: persons
+        }
+
+        try {
+            const key = 'franksflights_appointment'
+            const existing = JSON.parse(localStorage.getItem(key) || '[]')
+            existing.push(reserva)
+            localStorage.setItem(key, JSON.stringify(existing))
+            // También guardar la última reserva por conveniencia
+            localStorage.setItem('franksflights_last_appointment', JSON.stringify(reserva))
+            showInfo('Reserva guardada en localStorage', 5000)
+        } catch (err) {
+            showInfo('No se pudo guardar la reserva en localStorage', 5000)
+        }
+    }
+
     // Nodo de 'Regreso':
     // - Se renderiza solo cuando no es 'sencillo' (es decir, para viajes redondos).
     // - El contenedor tiene un manejador `onClick` que abre el selector de fecha (openDatePicker).
@@ -385,7 +440,7 @@ export default function Hero() {
                                         {/* mensaje moved to toast container */}
                                     </div>
                                     <div className="col">
-                                        <button type="button" className="btn btn-dark w-100">Reservar</button>
+                                        <button type="button" className="btn btn-dark w-100" onClick={handleReservar}>Reservar</button>
                                     </div>
                                 </div>
 

@@ -101,6 +101,10 @@
     display: flex; justify-content: center;
 }
 
+.arrow-icon{
+    background: #f1f5f900; 
+    box-shadow: 0 0px 0px rgba(9, 31, 68, 0);
+}
 
 
 .nav-tabs .nav-link{
